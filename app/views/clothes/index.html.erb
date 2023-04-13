@@ -1,0 +1,10 @@
+<h1>Je suis dans l'index</h1>
+
+<% @clothes.each do |clothe| %>
+  <p><%= clothe.name %></p>
+  <p><%= clothe.price %></p>
+  <p><%= clothe.description %></p>
+  <p><%= clothe.category %></p>
+  <p><%= clothe.size %></p>
+  <p><%= image_tag "tshirt-tbmlover.jpg", height: "300px", width: "300px"%></p>
+<% end %>

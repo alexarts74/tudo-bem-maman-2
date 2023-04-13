@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts "Destroying user"
+User.destroy_all
+
+puts "Creating user"
+User.create!(email: "titi@gmail.com", password: "qwertz")
+user_admin = User.create!(email: "toto@gmail.com", password: "qwertz")
+
+puts "Cleaning database..."
+Clothe.destroy_all
+
+puts "Creating seed"
+Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 22, size: "M", category: "tshrit", user: user_admin)
+Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 23, size: "M", category: "tshrit", user: user_admin)
+Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 24, size: "M", category: "tshrit", user: user_admin)
+
+puts "Seed finie"
