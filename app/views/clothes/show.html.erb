@@ -7,5 +7,9 @@
 <p><%= @clothe.size %></p>
 <p><%= cl_image_tag @clothe.image.key, height: 300, width: 300, crop: :fill%></p>
 
+<%= link_to "Back", clothes_path %>
 
-<%= link_to "Edit", edit_clothe_path(@clothe) %>
+<% if user_signed_in? && current_user.admin ==  true %>
+  <p><%= link_to "Edit", edit_clothe_path(@clothe) %></p>
+  <p><%= link_to "Delete", clothe_path(@clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<% end %>

@@ -1,3 +1,4 @@
+<%= link_to "Retour à l'accueil", root_path %>
 <h1>Je suis dans l'index</h1>
 
 <% @clothes.each do |clothe| %>
@@ -17,12 +18,3 @@
 <% if user_signed_in? && current_user.admin ==  true %>
   <p><%= link_to "Nouveau t-shirt", new_clothe_path %></p>
 <% end %>
-
-<% if user_signed_in? %>
-  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-<% else %>
-  <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
-  <%= link_to "Create account", new_user_registration_path, class: "dropdown-item" %>
-<% end %>
-
-<%= link_to "Retour à l'accueil", root_path %>
