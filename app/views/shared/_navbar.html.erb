@@ -1,13 +1,12 @@
 <div class="navbar-lewagon">
   <h4><%= link_to "Home", root_path, class: "menu" %></h4>
   <h4><%= link_to "T-shirts", clothes_path, class: "menu" %></h4>
-
-<% if dog_signed_in? %>
-  <%= link_to "My account", my_account_path, class: "dropdown-item" %>
-  <%= link_to "My reservations", reservations_path, class: "dropdown-item" %>
-  <%= link_to "Log out", destroy_dog_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-<% else %>
-  <%= link_to "Log in", new_dog_session_path, class: "dropdown-item" %>
-  <%= link_to "Create account", new_dog_registration_path, class: "dropdown-item" %>
-<% end %>
+  <div class="session">
+    <% if user_signed_in? %>
+      <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+    <% else %>
+      <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
+      <%= link_to "Create account", new_user_registration_path, class: "dropdown-item" %>
+    <% end %>
+  </div>
 </div>
