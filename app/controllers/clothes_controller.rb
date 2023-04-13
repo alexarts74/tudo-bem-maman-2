@@ -1,5 +1,8 @@
 class ClothesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  skip_before_action :authenticate_user!, only: %i[index show]
+
+  def home
+  end
 
   def index
     @clothes = Clothe.all
