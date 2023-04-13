@@ -6,5 +6,10 @@
   <p><%= clothe.description %></p>
   <p><%= clothe.category %></p>
   <p><%= clothe.size %></p>
-  <p><%= image_tag "tshirt-tbmlover.jpg", height: "300px", width: "300px"%></p>
+  <p><%= cl_image_tag clothe.image.key, height: 300, width: 400, crop: :fill%></p>
+  <p><%= link_to "Edit", edit_clothe_path(clothe) %></p>
+  <p><%= link_to "Show", clothe_path(clothe) %></p>
+  <p><%= link_to "Destroy", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>
+
+<%= link_to "New Clothe", new_clothe_path %>

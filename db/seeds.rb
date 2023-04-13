@@ -13,4 +13,7 @@ Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman e
 Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 23, size: "M", category: "tshrit", user: user_admin)
 Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 24, size: "M", category: "tshrit", user: user_admin)
 
+clothe_image = Cloudinary::Uploader.upload("app/assets/images/tshirt-tbmlover.jpg")
+clothe.image.attach(io: URI.open(clothe_image['url']), filename: "tshirt-tbmlover.jpg", content_type: "image/jpg")
+
 puts "Seed finie"

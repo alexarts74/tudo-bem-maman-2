@@ -1,1 +1,11 @@
 <h1>Je suis dans la show</h1>
+
+<p><%= @clothe.name %></p>
+<p><%= @clothe.price %></p>
+<p><%= @clothe.description %></p>
+<p><%= @clothe.category %></p>
+<p><%= @clothe.size %></p>
+<%= cl_image_tag @clothe.image.key, crop: :fill, if human.image.attached? %>
+
+
+<%= link_to "Edit", edit_clothe_path(@clothe) %>

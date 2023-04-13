@@ -6,15 +6,15 @@ class ClothesController < ApplicationController
   end
 
   def new
-    @clothes = Clothe.new
+    @clothe = Clothe.new
   end
 
   def show
-    @clothes = Clothe.find(params[:id])
+    @clothe = Clothe.find(params[:id])
   end
 
   def create
-    @clothes = Clothe.new(clothes_params)
+    @clothe = Clothe.new(clothes_params)
     if @clothes.save
       redirect_to clothes_path
     else
@@ -23,7 +23,7 @@ class ClothesController < ApplicationController
   end
 
   def edit
-    @clothes = Clothe.find(params[:id])
+    @clothe = Clothe.find(params[:id])
   end
 
   def update
@@ -36,14 +36,14 @@ class ClothesController < ApplicationController
   end
 
   def destroy
-    @clothes = Clothe.find(params[:id])
-    @clothes.destroy
+    @clothe = Clothe.find(params[:id])
+    @clothe.destroy
     redirect_to clothes_path
   end
 
   private
 
   def clothes_params
-    params.require(:clothes).permit(:name, :price, :image)
+    params.require(:clothe).permit(:name, :price, :image, :description, :size, :category)
   end
 end
