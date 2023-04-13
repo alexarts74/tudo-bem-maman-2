@@ -1,1 +1,12 @@
 <h1>Je suis dans la new</h1>
+<div class="container">
+  <%= simple_form_for @clothe do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :category %>
+    <%= f.input :size %>
+    <%= f.input :image, as: :file %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

@@ -2,8 +2,8 @@ puts "Destroying user"
 User.destroy_all
 
 puts "Creating user"
+user_admin = User.create!(email: "toto@gmail.com", password: "qwertz", admin: true)
 User.create!(email: "titi@gmail.com", password: "qwertz")
-user_admin = User.create!(email: "toto@gmail.com", password: "qwertz")
 
 puts "Cleaning database..."
 Clothe.destroy_all

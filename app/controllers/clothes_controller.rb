@@ -14,8 +14,9 @@ class ClothesController < ApplicationController
   end
 
   def create
-    @clothe = Clothe.new(clothes_params)
-    if @clothes.save
+    @clothe = Clothe.new(clothe_params)
+    @clothe.user = current_user
+    if @clothe.save
       redirect_to clothes_path
     else
       render :new
@@ -27,8 +28,8 @@ class ClothesController < ApplicationController
   end
 
   def update
-    @clothes = Clothe.find(params[:id])
-    if @clothes.update(clothes_params)
+    @clothe = Clothe.find(params[:id])
+    if @clothe.update(clothe_params)
       redirect_to clothes_path
     else
       render :edit
@@ -43,7 +44,7 @@ class ClothesController < ApplicationController
 
   private
 
-  def clothes_params
+  def clothe_params
     params.require(:clothe).permit(:name, :price, :image, :description, :size, :category)
   end
 end

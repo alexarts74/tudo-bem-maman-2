@@ -1,0 +1,29 @@
+<body>
+  <h1 class="title">TUDO BEM MAMAN</h1>
+  <%= image_tag "banner.jpg", alt: "T-shirt", width: 600, class: "banner" %>
+  <div class="container">
+      <p class="subtitle">Inspired by phonecalls between a mother and a student who left to study in portugal and living his best life ...</p>
+  </div>
+  <div class="first-section">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6 first-col">
+        <h3>Découvrez nos t-shirts d'origine française</h3>
+        <p>Conçue à Paris et designé au Portugal, nos t-shirts apportent du soleil dans vos vies lol</p>
+        <button><%= link_to "Voir tous les vêtements", clothes_path, class: "text-button" %></button>
+      </div>
+      <div class="col-6">
+        <%= image_tag "banner-2.jpg", alt: "T-shirt", width: 600, class: "banner-2 img-responsive" %>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <h3 class="reseaux-sociaux">Suivez-nous sur les réseaux sociaux</h3>
+    <ul class="social-icons">
+      <li>
+        <a href="https://www.instagram.com/tudo.bem.maman/" target="_blank" class="link"><i class="fab fa-instagram instagram"></i></a>
+      </li>
+    </ul>
+  </div>
+</body>

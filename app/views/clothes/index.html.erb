@@ -7,9 +7,22 @@
   <p><%= clothe.category %></p>
   <p><%= clothe.size %></p>
   <p><%= cl_image_tag clothe.image.key, height: 300, width: 300, crop: :fill%></p>
-  <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
+  <% if user_signed_in? && current_user.admin ==  true %>
+    <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
+    <p><%= link_to "Supprimer ce t-shirt", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <% end %>
   <p><%= link_to "Voir ce t-shirt", clothe_path(clothe) %></p>
-  <p><%= link_to "Supprimer ce t-shirt", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>
 
-<%= link_to "Nouveau t-shirt", new_clothe_path %>
+<% if user_signed_in? && current_user.admin ==  true %>
+  <p><%= link_to "Nouveau t-shirt", new_clothe_path %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+<% else %>
+  <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
+  <%= link_to "Create account", new_user_registration_path, class: "dropdown-item" %>
+<% end %>
+
+<%= link_to "Retour à l'accueil", root_path %>

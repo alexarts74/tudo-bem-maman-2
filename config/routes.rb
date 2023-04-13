@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "clothes#index"
+  root to: "clothes#home"
   resources :clothes
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
