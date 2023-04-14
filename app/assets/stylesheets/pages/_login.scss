@@ -1,0 +1,21 @@
+.login {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 30px
+}
+
+.submit {
+  background-color: #546d58;
+  color: white;
+  border-radius: 8px;
+  transition: transform .2s;
+  margin-bottom: 30px;
+}
+
+.submit:hover {
+  background-color: #546d58;
+  color: white;
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
+}

@@ -1,13 +1,28 @@
 <div class="navbar-lewagon">
-  <%= image_tag "logo.png", class: "logo" %>
-  <h4><%= link_to "Home", root_path, class: "menu" %></h4>
-  <h4><%= link_to "T-shirts", clothes_path, class: "menu" %></h4>
-  <div class="session">
-    <% if user_signed_in? %>
-      <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-    <% else %>
-      <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
-      <%= link_to "Create account", new_user_registration_path, class: "dropdown-item" %>
-    <% end %>
+
+  <div id="mySidenav" class="sidenav">
+    <a id="closeBtn" class="close">x</a>
+    <ul>
+      <li><%= link_to "Home", root_path, class: "menu" %></li>
+      <li><%= link_to "T-shirts", clothes_path, class: "menu" %></li>
+      <div class="session">
+        <% if user_signed_in? %>
+          <%= link_to "Log out", destroy_user_session_path, class: "account",data: {turbo_method: :delete} %>
+        <% else %>
+          <%= link_to "Log in", new_user_session_path, class: "account" %>
+          <%= link_to "Create account", new_user_registration_path, class: "account" %>
+        <% end %>
+      </div>
+    </ul>
   </div>
+
+  <a id="openBtn">
+    <span class="burger-icon">
+
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </a>
+    <a href="/"><%= image_tag "logo.png", class: "logo" %></a>
 </div>

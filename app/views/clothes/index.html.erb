@@ -1,19 +1,24 @@
-<%= link_to "Retour à l'accueil", root_path %>
-<h1>Je suis dans l'index</h1>
+<h1 class="title">T-Shirts TBM</h1>
 
-<% @clothes.each do |clothe| %>
-  <p><%= clothe.name %></p>
-  <p><%= clothe.price %></p>
-  <p><%= clothe.description %></p>
-  <p><%= clothe.category %></p>
-  <p><%= clothe.size %></p>
-  <p><%= cl_image_tag clothe.image.key, height: 300, width: 300, crop: :fill%></p>
-  <% if user_signed_in? && current_user.admin ==  true %>
-    <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
-    <p><%= link_to "Supprimer ce t-shirt", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
-  <% end %>
-  <p><%= link_to "Voir ce t-shirt", clothe_path(clothe) %></p>
-<% end %>
+<div class="container">
+  <div class="clothe-cards">
+    <% @clothes.each do |clothe| %>
+      <div class="clothe-card">
+        <h2><%= clothe.name %></h2>
+        <p><%= clothe.price %></p>
+        <p><%= clothe.description %></p>
+        <p><%= clothe.category %></p>
+        <p><%= clothe.size %></p>
+        <p><%= cl_image_tag clothe.image.key, height: 300, width: 300, crop: :fill%></p>
+        <% if user_signed_in? && current_user.admin ==  true %>
+          <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
+          <p><%= link_to "Supprimer ce t-shirt", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <% end %>
+        <p><%= link_to "Voir ce t-shirt", clothe_path(clothe) %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <% if user_signed_in? && current_user.admin ==  true %>
   <p><%= link_to "Nouveau t-shirt", new_clothe_path %></p>
