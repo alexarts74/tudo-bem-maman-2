@@ -6,7 +6,7 @@
       <h3><%= @clothe.name %></h3>
       <p class="price-show"><%= @clothe.price %>€</p>
       <p>Taille : <%= @clothe.size %></p>
-      <button class="buy-button">Acheter cette merveille</button>
+      <button class="buy-button"><%= link_to "Acheter cette merveille", new_user_registration_path, class: "button" %></button>
       <p><%= @clothe.description %></p>
     </div>
 </div>

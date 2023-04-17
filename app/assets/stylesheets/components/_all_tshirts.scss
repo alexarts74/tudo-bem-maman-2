@@ -27,6 +27,7 @@
 
 button {
   background-color: #546d58;
+  text-decoration: none;
   border: none;
   display: block;
   margin: auto;
@@ -35,11 +36,21 @@ button {
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
+  transition: transform .2s;
 }
 
 .button {
   text-decoration: none;
   color: white;
+}
+
+button:hover{
+  background-color: #546d58;
+  color: white;
+  text-decoration: none;
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
 }
 
 .price {
@@ -54,4 +65,12 @@ button {
 
 .description {
   text-align: justify;
+}
+
+@media only screen and (min-width: 768px) {
+  .clothe-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+  }
 }
