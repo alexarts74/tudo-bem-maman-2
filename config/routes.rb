@@ -2,8 +2,5 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "clothes#home"
   resources :clothes
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get "/dashboard", to: "clothes#my_dashboard"
 end

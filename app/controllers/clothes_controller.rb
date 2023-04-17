@@ -45,6 +45,10 @@ class ClothesController < ApplicationController
     redirect_to clothes_path
   end
 
+  def my_dashboard
+    #mettre les infos liés au paiement pour Louis
+  end
+
   private
 
   def clothe_params
