@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  gap: 80px
+}
+
+.buy-button {
+  background-color: #546d58;
+  border: none;
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+}

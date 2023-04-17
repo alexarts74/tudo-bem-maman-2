@@ -1,11 +1,15 @@
-<h1>Je suis dans la show</h1>
+<h1 class="title">TBM Lover</h1>
 
-<p><%= @clothe.name %></p>
-<p><%= @clothe.price %></p>
-<p><%= @clothe.description %></p>
-<p><%= @clothe.category %></p>
-<p><%= @clothe.size %></p>
-<p><%= cl_image_tag @clothe.image.key, height: 300, width: 300, crop: :fill%></p>
+<div class="container">
+  <p><%= cl_image_tag @clothe.image.key, height: 500, width: 500, crop: :fill%></p>
+    <div class="tshirt-info">
+      <p><%= @clothe.name %></p>
+      <p><%= @clothe.price %>€</p>
+      <p>Taille : <%= @clothe.size %></p>
+      <button class="buy-button">Acheter cette merveille</button>
+      <p><%= @clothe.description %></p>
+    </div>
+</div>
 
 <%= link_to "Back", clothes_path %>
 

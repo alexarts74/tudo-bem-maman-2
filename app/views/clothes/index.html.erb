@@ -4,17 +4,19 @@
   <div class="clothe-cards">
     <% @clothes.each do |clothe| %>
       <div class="clothe-card">
-        <h2><%= clothe.name %></h2>
-        <p><%= clothe.price %></p>
-        <p><%= clothe.description %></p>
-        <p><%= clothe.category %></p>
-        <p><%= clothe.size %></p>
-        <p><%= cl_image_tag clothe.image.key, height: 300, width: 300, crop: :fill%></p>
+        <p class="img-clothe"><%= cl_image_tag clothe.image.key, height: 300, width: 300, crop: :fill, class: "img"%></p>
+          <div class="card-info">
+            <h2 class="title-card"><%= clothe.name %></h2>
+            <p class="description"><%= clothe.description %></p>
+            <p>Categorie : <%= clothe.category %></p>
+            <p>Taille : <%= clothe.size %></p>
+            <p class="price"><%= clothe.price %>€</p>
+          </div>
         <% if user_signed_in? && current_user.admin ==  true %>
           <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
           <p><%= link_to "Supprimer ce t-shirt", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
         <% end %>
-        <p><%= link_to "Voir ce t-shirt", clothe_path(clothe) %></p>
+        <button><%= link_to "Voir ce t-shirt", clothe_path(clothe), class: "button" %></button>
       </div>
     <% end %>
   </div>
