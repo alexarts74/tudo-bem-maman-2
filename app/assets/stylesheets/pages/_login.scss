@@ -9,7 +9,7 @@
   color: white;
   border-radius: 8px;
   transition: transform .2s;
-  margin-bottom: 30px;
+  margin-bottom: -50px;
 }
 
 .submit:hover {
@@ -18,4 +18,25 @@
   -ms-transform: scale(1.2); /* IE 9 */
   -webkit-transform: scale(1.2); /* Safari 3-8 */
   transform: scale(1.2);
+}
+
+.links-connexion {
+  text-decoration: none;
+  color: black;
+  margin-bottom: 70px;
+}
+
+@media only screen and (min-width: 768px) {
+
+  .form-log-in {
+    display: block;
+  }
+
+  .links-connexion {
+    gap: 20px;
+  }
+
+  .submit {
+    margin-bottom: 80px;
+  }
 }
