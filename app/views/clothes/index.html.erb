@@ -12,9 +12,8 @@
             <p>Taille : <%= clothe.size %></p>
             <p class="price"><%= clothe.price %>€</p>
           </div>
-        <% if user_signed_in? && current_user.admin ==  true %>
+        <% if user_signed_in? && current_user.admin == true %>
           <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
-          <p><%= link_to "Supprimer ce t-shirt", clothe_path(clothe), method: :delete, data: { confirm: 'Are you sure?' } %></p>
         <% end %>
         <button><%= link_to "Voir ce t-shirt", clothe_path(clothe), class: "button" %></button>
       </div>
