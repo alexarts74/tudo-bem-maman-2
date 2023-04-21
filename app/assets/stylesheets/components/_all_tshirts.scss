@@ -5,6 +5,10 @@
 .clothe-card {
   border: 2px solid rgb(195, 195, 195);
   margin-bottom: 50px;
+  height: 800px;
+  width: 360px;
+  margin: 30px auto;
+
 }
 
 .img-clothe {
@@ -70,6 +74,7 @@ button:hover{
 @media only screen and (min-width: 768px) {
   .clothe-cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     justify-content: space-around;
   }

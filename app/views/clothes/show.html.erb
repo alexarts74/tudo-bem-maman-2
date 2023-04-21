@@ -1,7 +1,7 @@
 <h1 class="title">TBM Lover</h1>
 
 <div class="container">
-  <p><%= cl_image_tag @clothe.image.key, height: 500, width: 500, crop: :fill, class: "image-clothe"%></p>
+  <p><%= cl_image_tag @clothe.image.key, crop: :fill, class: "image-clothe"%></p>
     <div class="tshirt-info">
       <h3><%= @clothe.name %></h3>
       <p class="price-show"><%= @clothe.price %>€</p>
