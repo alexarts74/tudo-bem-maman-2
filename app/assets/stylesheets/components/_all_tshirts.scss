@@ -8,7 +8,6 @@
   height: 800px;
   width: 360px;
   margin: 30px auto;
-
 }
 
 .img-clothe {
@@ -75,6 +74,7 @@ button:hover{
   .clothe-cards {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
     gap: 30px;
     justify-content: space-around;
   }
