@@ -1,5 +1,15 @@
+developement:
+  cloud_name: "dphvothve"
+  api_key: "591562457342312"
+  api_secret: "i9sCVn_Cjl7pwI4kFtaCt1RKGEA"
+  enhance_image_tag: true
+  static_file_support: false
+  secure: true
+
 production:
   cloud_name: "dphvothve"
   api_key: "591562457342312"
   api_secret: "i9sCVn_Cjl7pwI4kFtaCt1RKGEA"
+  enhance_image_tag: true
+  static_file_support: true
   secure: true
