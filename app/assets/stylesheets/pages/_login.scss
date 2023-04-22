@@ -20,10 +20,11 @@
   transform: scale(1.2);
 }
 
-.links-connexion {
+.links-connexion-login {
   text-decoration: none;
   color: black;
-  margin-bottom: 70px;
+  margin-top: 68px;
+  margin-bottom: 90px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -32,11 +33,7 @@
     display: block;
   }
 
-  .links-connexion {
-    gap: 20px;
-  }
-
-  .submit {
-    margin-bottom: 80px;
+  .links-connexion-login {
+    margin-top: 65px;
   }
 }

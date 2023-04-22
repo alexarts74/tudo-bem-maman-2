@@ -1,7 +1,9 @@
-.links-connexion {
+.links-connexion-signup {
+  margin-top: 100px;
   text-decoration: none;
   color: black;
 }
+
 
 @media only screen and (min-width: 768px) {
 
@@ -9,11 +11,7 @@
     display: block;
   }
 
-  .links-connexion {
-    gap: 20px;
-  }
-
-  .submit {
-    margin-bottom: 80px;
+  .links-connexion-signup {
+    margin-top: 10px;
   }
 }
