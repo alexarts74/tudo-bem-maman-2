@@ -28,21 +28,35 @@ body {
   border-bottom: solid rgb(164, 164, 164);
 }
 
-button {
-  background-color: #546d58;
-  border: none;
-  display: block;
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
-
 .text-button {
   text-decoration: none;
   color: white;
+  text-align: center;
+  background-color: #546d58;
+  text-decoration: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: transform .2s;
+}
+
+.text-button:hover{
+  background-color: #546d58;
+  color: white;
+  text-decoration: none;
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
+}
+
+.button-home {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 h3 {
@@ -130,4 +144,13 @@ h3 {
 .panier{
   position: inherit;
   list-style: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .text-button{
+    width: 70%;
+    height: 10%;
+    padding-top: 9px;
+    margin-top: -80px;
+  }
 }

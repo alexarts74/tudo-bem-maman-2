@@ -15,7 +15,7 @@
         <% if user_signed_in? && current_user.admin == true %>
           <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
         <% end %>
-        <button><%= link_to "Voir ce t-shirt", clothe_path(clothe), class: "button" %></button>
+        <p class="test-button"><%= link_to "Voir ce t-shirt", clothe_path(clothe), class: "button" %></p>
       </div>
     <% end %>
   </div>

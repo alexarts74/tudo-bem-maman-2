@@ -28,26 +28,29 @@
   margin-right: 25px;
 }
 
-button {
+.button {
+  text-decoration: none;
+  color: white;
+  text-align: center;
   background-color: #546d58;
   text-decoration: none;
   border: none;
-  display: block;
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  width: 50%;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;
   transition: transform .2s;
 }
 
-.button {
-  text-decoration: none;
-  color: white;
+.test-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
 
-button:hover{
+.button:hover{
   background-color: #546d58;
   color: white;
   text-decoration: none;

@@ -1,12 +1,12 @@
 <h1 class="title">TBM Lover</h1>
 
-<div class="container">
+<div class="container-tbm">
   <p><%= cl_image_tag @clothe.image.key, crop: :fill, class: "image-clothe"%></p>
     <div class="tshirt-info">
       <h3><%= @clothe.name %></h3>
       <p class="price-show"><%= @clothe.price %>€</p>
       <p>Taille : <%= @clothe.size %></p>
-      <button class="buy-button"><%= link_to "Acheter cette merveille", new_user_registration_path, class: "button" %></button>
+      <button class="buy-button-tbm"><%= link_to "Acheter cette merveille", new_user_registration_path, class: "button-text-buy" %></button>
       <%# changer le lien de ce button et le ramener vers stripe car l'authentification va se faire automatiquement %>
       <p><%= @clothe.description %></p>
     </div>
