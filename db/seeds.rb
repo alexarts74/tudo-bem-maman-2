@@ -3,6 +3,7 @@ User.destroy_all
 
 puts "Creating user"
 user_admin = User.create!(email: "toto@gmail.com", password: "qwertz", admin: true)
+user_admin_2 = User.create!(email: "tata@gmail.com", password: "qwertz", admin: true)
 User.create!(email: "titi@gmail.com", password: "qwertz")
 
 puts "Cleaning database..."

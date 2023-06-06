@@ -16,10 +16,12 @@ closeBtn.onclick = closeNav;
 
 /* Set the width of the side navigation to 250px */
 function openNav() {
+  console.log("open");
   sidenav.classList.add("active");
 }
 
 /* Set the width of the side navigation to 0 */
 function closeNav() {
+  console.log("close");
   sidenav.classList.remove("active");
 }
