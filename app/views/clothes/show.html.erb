@@ -6,7 +6,11 @@
       <h3><%= @clothe.name %></h3>
       <p class="price-show"><%= @clothe.price %>€</p>
       <p>Taille : <%= @clothe.size %></p>
-      <button class="buy-button-tbm"><%= link_to "Acheter cette merveille", new_user_registration_path, class: "button-text-buy" %></button>
+      <% if user_signed_in? %>
+        <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", clothe_checkout_path(@clothe), class: "button-text-buy", method: :post, remote: true, data: { turbo: false } %></button>
+      <% else %>
+        <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", new_user_registration_path, class: "button-text-buy", method: :get%></button>
+      <% end %>
       <%# changer le lien de ce button et le ramener vers stripe car l'authentification va se faire automatiquement %>
       <p><%= @clothe.description %></p>
     </div>
@@ -15,7 +19,7 @@
 <br>
 
 <%= link_to "Back", clothes_path %>
-<% if user_signed_in? && current_user.admin ==  true %>
+<% if user_signed_in? && current_user.admin == true %>
   <p><%= link_to "Edit", edit_clothe_path(@clothe) %></p>
   <p><%= link_to "Supprimer ce t-shirt", clothe_path(@clothe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
 <% end %>
