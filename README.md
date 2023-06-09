@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+TudoBemMaman is an online clothing store made for a friend. It works with the Stripe payment system and allows autonomous management with an administrator system.
