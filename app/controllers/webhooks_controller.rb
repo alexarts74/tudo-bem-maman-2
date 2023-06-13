@@ -27,7 +27,7 @@ class WebhooksController < ApplicationController
       session = event.data.object
       session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ["line_items"]})
       session_with_expand.line_items.data.each do |line_item|
-        @clothe = Clohte.find_by(stripe_product_id: line_item.price.product)
+        @clothe = Clothe.find_by(stripe_product_id: line_item.price.product)
         @clothe.increment!(:sales_count)
       end
     end
