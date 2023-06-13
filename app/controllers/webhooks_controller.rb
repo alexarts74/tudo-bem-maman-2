@@ -11,13 +11,12 @@ class WebhooksController < ApplicationController
         payload, sig_header, Rails.application.credentials[:webhook_stripe]
       )
     rescue JSON::ParserError => e
-      render json: { error: { message: e.message }}, status: :bad_request
+      status 400
       return
     rescue Stripe::SignatureVerificationError => e
       # Invalid signature
-      render json: { error: { message: e.message, extra: "Sig verification failed" }}, status: :bad_request
-      # puts "Signature error"
-      # p e
+      puts "Signature error"
+      p e
       return
     end
 

@@ -46,7 +46,7 @@ class ClothesController < ApplicationController
   end
 
   def my_dashboard
-    @clothes = Clothe.all
+    @clothe = Clothe.all
   end
 
   private
