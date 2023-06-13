@@ -46,7 +46,7 @@ class ClothesController < ApplicationController
   end
 
   def my_dashboard
-    #mettre les infos liés au paiement pour Louis
+    @clothes = Clothe.all
   end
 
   private

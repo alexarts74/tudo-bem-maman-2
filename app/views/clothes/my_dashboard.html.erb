@@ -1,2 +1,9 @@
 <h1>Je suis dans le dashboard</h1>
 <h3>Mettre toutes les infos de stripe pour Louis</h3>
+
+<h3>Tes t-shirts vendus !</h3>
+<% @clothes.each do |clothe| %>
+  <%= clothe.name %>
+  <%= clothe.price %>
+  <%= clothe.sales_count %>
+<% end %>

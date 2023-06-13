@@ -1,4 +1,7 @@
 <h1 class="title">T-Shirts TBM</h1>
+<% if current_user.admin == true %>
+  <%= link_to "Voir mes ventes", dashboard_path, class: "button_dashboard" %>
+<% end %>
 
 <div class="container">
   <div class="clothe-cards">
