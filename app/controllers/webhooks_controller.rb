@@ -1,5 +1,4 @@
 class WebhooksController < ApplicationController
-  skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
 
   def create
@@ -12,12 +11,13 @@ class WebhooksController < ApplicationController
         payload, sig_header, Rails.application.credentials[:webhook_stripe]
       )
     rescue JSON::ParserError => e
-      status 400
+      render json: { error: { message: e.message }}, status: :bad_request
       return
     rescue Stripe::SignatureVerificationError => e
       # Invalid signature
-      puts "Signature error"
-      p e
+      render json: { error: { message: e.message, extra: "Sig verification failed" }}, status: :bad_request
+      # puts "Signature error"
+      # p e
       return
     end
 
@@ -27,8 +27,8 @@ class WebhooksController < ApplicationController
       session = event.data.object
       session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ["line_items"]})
       session_with_expand.line_items.data.each do |line_item|
-        product = Product.find_by(stripe_product_id: line_item.price.product)
-        product.increment!(:sales_count)
+        @clothes = Clothe.find_by(stripe_product_id: line_item.price.product)
+        @clothes.increment!(:sales_count)
       end
     end
 
