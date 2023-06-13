@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     post "/checkout", to: "checkouts#create"
   end
   get "/dashboard", to: "clothes#my_dashboard"
+  resources :webhooks, only: [:create]
 end
