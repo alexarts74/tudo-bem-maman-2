@@ -14,6 +14,7 @@
             <p>Categorie : <%= clothe.category %></p>
             <p>Taille : <%= clothe.size %></p>
             <p class="price"><%= clothe.price %>€</p>
+            <p><%= clothe.sales_count %>product sold</p>
           </div>
         <% if user_signed_in? && current_user.admin == true %>
           <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
