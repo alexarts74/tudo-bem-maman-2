@@ -1,5 +1,5 @@
 <h1 class="title">T-Shirts TBM</h1>
-<% if current_user.admin == true %>
+<% if current_user && current_user.admin? %>
   <%= link_to "Voir mes ventes", dashboard_path, class: "button_dashboard" %>
 <% end %>
 
