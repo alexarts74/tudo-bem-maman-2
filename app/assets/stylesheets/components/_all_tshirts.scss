@@ -3,11 +3,9 @@
 }
 
 .clothe-card {
-  border: 2px solid rgb(195, 195, 195);
-  margin-bottom: 50px;
-  height: 800px;
+  height: 600px;
   width: 360px;
-  margin: 30px auto;
+  // border: 1px solid #546d58;
 }
 
 .img-clothe {
@@ -19,13 +17,7 @@
 }
 .title-card {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.card-info {
-  margin-left: 25px;
-  margin-right: 25px;
+  font-size: 24px;
 }
 
 .button {
@@ -107,4 +99,9 @@
     gap: 30px;
     justify-content: space-around;
   }
+}
+
+.flex-info {
+  display: flex;
+  justify-content: space-between;
 }
