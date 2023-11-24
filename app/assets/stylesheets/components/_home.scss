@@ -12,7 +12,6 @@ body {
 .banner {
   display: block;
   width: 100%;
-  margin: auto;
 }
 
 .subtitle {
@@ -20,12 +19,6 @@ body {
   font-size: 18px;
   margin-top: 40px;
   margin-bottom: 40px;
-}
-
-.first-section {
-  padding-bottom: 0px;
-  margin-bottom: 3%;
-  border-bottom: solid rgb(164, 164, 164);
 }
 
 .text-button {
@@ -57,6 +50,7 @@ body {
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  margin-bottom: 96px;
 }
 
 h3 {
@@ -146,10 +140,94 @@ h3 {
   list-style: none;
 }
 
+
+.sect {
+  height: 330px;
+  width: 100%;
+  background-color: black;
+  margin-top: 96px;
+  margin-bottom: 96px;
+}
+
+.flex {
+  display: flex;
+  gap: 72px;
+}
+
+.owner {
+  margin-left: 21%;
+  margin-top: 7%;
+  height: 148px;
+  width: 148px;
+  border-radius: 50%;
+}
+
+.comment-ines {
+  margin-top: 6%;
+}
+
+.owner-name {
+  width: 100%;
+  color: white;
+  margin-top: 5%;
+  margin-bottom: -3px;
+}
+
+.first-section {
+  width: 90px;
+  height: 10px;
+  border-bottom: solid white;
+}
+
+.comment-content {
+  color: white;
+  margin-top: 16px;
+}
+
 @media only screen and (max-width: 768px) {
   .text-button{
     width: 70%;
     height: 10%;
     padding-top: 9px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .sect {
+    height: fit-content;
+    width: 100%;
+    background-color: black;
+    margin-top: 96px;
+    margin-bottom: 96px;
+  }
+
+  .first-section {
+    margin: 0 auto;
+    width: 90px;
+    height: 10px;
+    border-bottom: solid white;
+  }
+
+  .owner {
+    height: 148px;
+    width: 148px;
+    border-radius: 50%;
+    margin: 16px auto
+  }
+
+  .comment-ines {
+    margin-top: 0%;
+  }
+
+  .comment-content {
+    color: white;
+    margin-top: 16px;
+    margin-bottom: 32px;
   }
 }
