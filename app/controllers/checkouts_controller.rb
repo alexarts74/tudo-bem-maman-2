@@ -3,6 +3,7 @@ class CheckoutsController < ApplicationController
   def create
     clothe = Clothe.find(params[:clothe_id])
     @session = Stripe::Checkout::Session.create({
+      customer: current_user.stripe_customer_id,
       payment_method_types: ['card'],
       line_items: [{
         price_data: {
