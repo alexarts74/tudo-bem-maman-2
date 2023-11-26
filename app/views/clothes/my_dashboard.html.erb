@@ -1,9 +1,28 @@
-<h1>Je suis dans le dashboard</h1>
-<h3>Mettre toutes les infos de stripe pour Louis</h3>
+<h1 class="title">Dashboard des ventes</h1>
+<h3 class="title">Mettre toutes les infos de stripe pour Inès la femme de ma vie</h3>
 
-<h3>Tes t-shirts vendus !</h3>
-<% @clothe.each do |clothe| %>
-  <%= clothe.name %>
-  <%= clothe.price %>
-  <%= clothe.sales_count %>
+<div class="container">
+  <h3 class="h3-dash">Tes t-shirts vendus !</h3>
+  <div class="vente">
+    <% @clothe.each do |clothe| %>
+      <p><%= clothe.name %></p>
+      <p><%= clothe.price %>
+      <p><%= clothe.sales_count %>t-shirt vendu(s)</p>
+    <% end %>
+  </div>
+
+<% if params[:session_id].present? %>
+  <% @session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
+  <%= @session.payment_intent %>
+  <%#= Stripe::PaymentIntent.retrieve(@session.payement_intent) %>
+
+  <% @session_with_expand = Stripe::Checkout::Session.retrieve({
+    id: params[:session_id],
+    expand: ["payment_intent", "line_items"]}) %>
+  <hr>
+  <% @session_with_expand.line_items.data.each do |line_item| %>
+    <p><%= line_item.price.id %></p>
+    <%= line_item.price.product %>
+  <% end %>
 <% end %>
+</div>
