@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   end
   get "/dashboard", to: "clothes#my_dashboard"
   resources :webhooks, only: [:create]
+  get "/success", to: "checkouts#success"
+  get "/cancel", to: "checkouts#cancel"
 end

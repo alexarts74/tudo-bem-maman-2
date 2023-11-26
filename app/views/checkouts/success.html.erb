@@ -1,0 +1,13 @@
+<h1>Merci d'avoir passé commande chez nous !</h1>
+<% @session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
+<%= @session.payment_intent %>
+<%= Stripe::PaymentIntent.retrieve(@session.payment_intent) %>
+
+<% @session_with_expand = Stripe::Checkout::Session.retrieve({
+  id: params[:session_id],
+  expand: ["payment_intent", "line_items"]}) %>
+<hr>
+<% @session_with_expand.line_items.data.each do |line_item| %>
+  <p><%= line_item.price.id %></p>
+  <%= line_item.price.product %>
+<% end %>
