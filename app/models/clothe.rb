@@ -11,6 +11,6 @@ class Clothe < ApplicationRecord
   after_create do
     clothe = Stripe::Product.create(name: name)
     price = Stripe::Price.create(product: clothe, unit_amount: self.price, currency: "eur")
-    update(stripe_clothe_id: clothe.id)
+    update(stripe_clothe_id: clothe.id, stripe_price_id: price.id)
   end
 end
