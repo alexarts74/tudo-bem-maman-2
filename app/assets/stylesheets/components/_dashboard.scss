@@ -1,8 +1,28 @@
 .vente {
-  // display: flex;
+  display: flex;
 }
 
 .h3-dash {
   text-align: center;
   margin-bottom: 32px;
+}
+
+.image-dashboard {
+  height: 300px;
+  width: 300px;
+}
+
+.clothe-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.clothe-card {
+  width: 300px;
+  height: 500px;
+  margin-bottom: 32px;
+}
+body {
+
 }

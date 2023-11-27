@@ -2,7 +2,7 @@ class Clothe < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :name, :description, :price, presence: true
+  validates :name, :description, :price, :image, :category, :size, presence: true
 
   def to_s
     name

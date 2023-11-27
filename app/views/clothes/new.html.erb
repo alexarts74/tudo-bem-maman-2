@@ -2,7 +2,7 @@
   <div class="container">
     <%= simple_form_for @clothe do |f| %>
       <%= f.input :name %>
-      <%= f.input :price %>
+      <%= f.input :price, placeholder: 'Le prix est divisé par 100 sur stripe donc créer un produit avec son prix X 100 / Exemple : prix = 1000 pour 10€ ' %>
       <%= f.input :description %>
       <%= f.input :category %>
       <%= f.input :size %>

@@ -22,7 +22,7 @@ class ClothesController < ApplicationController
     if @clothe.save
       redirect_to clothes_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

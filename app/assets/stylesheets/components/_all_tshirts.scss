@@ -3,8 +3,10 @@
 }
 
 .clothe-card {
-  height: 600px;
-  width: 360px;
+  height: 400px;
+  width: 160px;
+  margin-bottom: 48px;
+  margin-top: 48px;
   // border: 1px solid #546d58;
 }
 
@@ -13,7 +15,10 @@
 }
 
 .img {
-  width: 100%;
+  // width: 100%;
+  // height: 100%;
+  height: 300px;
+  width: 300px;
 }
 .title-card {
   text-align: center;
@@ -29,7 +34,7 @@
   border: none;
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: 100%;
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 16px;

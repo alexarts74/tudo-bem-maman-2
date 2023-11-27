@@ -4,7 +4,7 @@
   <p><%= cl_image_tag @clothe.image.key, crop: :fill, class: "image-clothe"%></p>
     <div class="tshirt-info">
       <h3><%= @clothe.name %></h3>
-      <p class="price-show"><%= @clothe.price %>€</p>
+      <p class="price-show"><%= @clothe.price / 100 %>€</p>
       <p>Taille : <%= @clothe.size %></p>
       <% if user_signed_in? %>
         <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", clothe_checkout_path(@clothe), class: "button-text-buy", method: :post, remote: true, data: { turbo: false } %></button>

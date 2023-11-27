@@ -3,11 +3,15 @@
 
 <div class="container">
   <h3 class="h3-dash">Tes t-shirts vendus !</h3>
-  <div class="vente">
-    <% @clothe.each do |clothe| %>
-      <p><%= clothe.name %></p>
-      <p><%= clothe.price %>
-      <p><%= clothe.sales_count %>t-shirt vendu(s)</p>
-    <% end %>
+    <div class="clothe-cards">
+      <% @clothe.each do |clothe| %>
+        <div class="clothe-card">
+          <%= cl_image_tag clothe.image.key, crop: :fill, class: "image-dashboard"%></p>
+          <p><%= clothe.name %></p>
+          <p><%= clothe.price / 100 %>€</p>
+          <p><%= clothe.sales_count %>t-shirt vendu(s)</p>
+          <p>Total gagné sur ce tshirt <%= clothe.sales_count * clothe.price / 100 %>€</p>
+        </div>
+      <% end %>
   </div>
 </div>
