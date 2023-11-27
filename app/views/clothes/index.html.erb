@@ -1,5 +1,5 @@
 <h1 class="title">T-Shirts TBM</h1>
-<%= current_user.stripe_customer_id %>
+<p><%= current_user.stripe_customer_id %></p>
 <% if current_user && current_user.admin? %>
   <%= link_to "Voir mes ventes", dashboard_path, class: "button_dashboard" %>
 <% end %>
@@ -11,6 +11,7 @@
         <p class="img-clothe"><%= cl_image_tag clothe.image.key, crop: :fill, class: "img"%></p>
           <div class="card-info">
             <div class="flex-info">
+              <p><%= clothe.stripe_clothe_id %></p>
               <p class="title-card"><%= clothe.name %></p>
               <p class="price"><%= clothe.price %>€</p>
             </div>

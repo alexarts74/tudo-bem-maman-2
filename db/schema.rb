@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_26_114853) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_26_122344) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_114853) do
     t.string "size"
     t.string "category"
     t.integer "sales_count", default: 0, null: false
+    t.string "stripe_clothe_id"
     t.index ["user_id"], name: "index_clothes_on_user_id"
   end
 
