@@ -12,15 +12,15 @@ Clothe.destroy_all
 puts "Creating clothe"
 
 clothe = Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 22, size: "M", category: "tshrit", user: user_admin)
-clothe_image = Cloudinary::Uploader.upload(Rails.root.join("app/assets/images/tshirt-tbmlover.jpg"))
-clothe.image.attach(io: URI.open(clothe_image['secure_url']), filename: "tshirt-tbmlover.jpg", content_type: "image/jpg")
+clothe_image = Cloudinary::Uploader.upload(Rails.root.join("app/assets/images/t-shirt-dos-tbm.png"))
+clothe.image.attach(io: URI.open(clothe_image['secure_url']), filename: "t-shirt-dos-tbm.png", content_type: "image/png")
 
 clothe = Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 22, size: "M", category: "tshrit", user: user_admin)
-clothe_image = Cloudinary::Uploader.upload(Rails.root.join("app/assets/images/tshirt-tbmlover.jpg"))
-clothe.image.attach(io: URI.open(clothe_image['secure_url']), filename: "tshirt-tbmlover.jpg", content_type: "image/jpg")
+clothe_image = Cloudinary::Uploader.upload(Rails.root.join("app/assets/images/t-shirt-dos-tbm.png"))
+clothe.image.attach(io: URI.open(clothe_image['secure_url']), filename: "t-shirt-dos-tbm.png", content_type: "image/png")
 
 clothe = Clothe.create!(name: "T-shirt TBM", description: "Notre t-shirt Tudo Bem Maman est fait en 100% coton, avec des coutures résistantes et amples", price: 22, size: "M", category: "tshrit", user: user_admin)
-clothe_image = Cloudinary::Uploader.upload(Rails.root.join("app/assets/images/tshirt-tbmlover.jpg"))
-clothe.image.attach(io: URI.open(clothe_image['secure_url']), filename: "tshirt-tbmlover.jpg", content_type: "image/jpg")
+clothe_image = Cloudinary::Uploader.upload(Rails.root.join("app/assets/images/t-shirt-dos-tbm.png"))
+clothe.image.attach(io: URI.open(clothe_image['secure_url']), filename: "t-shirt-dos-tbm.png", content_type: "image/png")
 
 puts "Finished!"
