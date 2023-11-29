@@ -8,9 +8,7 @@ class WebhooksController < ApplicationController
     event = nil
 
     begin
-      event = Stripe::Webhook.construct_event(
-        payload, sig_header, Rails.application.credentials[:webhook_stripe]
-      )
+      event = Stripe::Webhook.construct_event(payload, sig_header, Rails.application.credentials[:webhook_stripe])
     rescue JSON::ParserError => e
       status 400
       return
@@ -20,16 +18,13 @@ class WebhooksController < ApplicationController
       p e
       return
     end
+    puts event.inspect
 
-
-    case event.type
-    when 'checkout.session.completed'
+    if event.type == 'checkout.session.completed'
       session = event.data.object
-      puts session
       session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ["line_items"]})
       session_with_expand.line_items.data.each do |line_item|
         clothe = Clothe.find_by(stripe_clothe_id: line_item.price.product)
-        puts clothe
         clothe.increment!(:sales_count)
       end
     end
