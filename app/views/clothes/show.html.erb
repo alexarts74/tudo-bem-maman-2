@@ -11,7 +11,11 @@
       <% else %>
         <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", new_user_registration_path, class: "button-text-buy", method: :get%></button>
       <% end %>
-      <%# changer le lien de ce button et le ramener vers stripe car l'authentification va se faire automatiquement %>
+      <% if user_signed_in? && @cart.include?(@clothe) %>
+        <button class="cart-button-tbm"><%= button_to "Supprimer du panier", remove_from_cart_path(@clothe), class: "button-text-cart", method: :get%></button>
+      <% elsif user_signed_in? %>
+        <button class="cart-button-tbm"><%= button_to "Ajouter à mon panier", add_to_cart_path(@clothe), class: "button-text-cart", method: :post, remote: true, data: { turbo: false }%></button>
+      <% end %>
       <p><%= @clothe.description %></p>
     </div>
 </div>

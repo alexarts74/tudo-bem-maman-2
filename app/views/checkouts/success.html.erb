@@ -37,7 +37,7 @@
           <p><%= cl_image_tag @clothe.image.key, crop: :fill, class: "image-dashboard"%></p>
         </div>
         <div class="col-6">
-          <p>Montant total de votre commande <%= @session_with_expand.amount_total / 100 %>€</p>
+          <p>Montant total de votre commande <%= @session_with_expand.amount_total / 100.to_f %>€</p>
           <p>Taille : <%= @clothe.size %></p>
         </div>
       </div>

@@ -11,6 +11,7 @@
           <%= link_to "Log out", destroy_user_session_path, class: "account",data: {turbo_method: :delete} %>
         <% elsif user_signed_in? %>
           <%= link_to "Log out", destroy_user_session_path, class: "account",data: {turbo_method: :delete} %>
+          <%#= link_to "Card",  %>
         <% else %>
           <%= link_to "Log in", new_user_session_path, class: "account" %>
           <%= link_to "Create account", new_user_registration_path, class: "account" %>
