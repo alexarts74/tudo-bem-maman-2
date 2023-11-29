@@ -7,7 +7,7 @@
       <p class="price-show"><%= @clothe.price / 100 %>€</p>
       <p>Taille : <%= @clothe.size %></p>
       <% if user_signed_in? %>
-        <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", clothe_checkout_path(@clothe), class: "button-text-buy", method: :post, remote: true, data: { turbo: false } %></button>
+        <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", clothe_checkout_path(@clothe), class: "button-text-buy", method: :post, remote: true, data: { turbo: false }%></button>
       <% else %>
         <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", new_user_registration_path, class: "button-text-buy", method: :get%></button>
       <% end %>
@@ -21,5 +21,5 @@
 <%= link_to "Back", clothes_path %>
 <% if user_signed_in? && current_user.admin == true %>
   <p><%= link_to "Edit", edit_clothe_path(@clothe) %></p>
-  <p><%= link_to "Supprimer ce t-shirt", clothe_path(@clothe), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
+  <p><%= link_to "Supprimer ce t-shirt", clothe_path(@clothe), data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt mon reuf ?" } %></p>
 <% end %>

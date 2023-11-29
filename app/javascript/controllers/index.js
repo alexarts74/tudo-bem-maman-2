@@ -25,3 +25,9 @@ function closeNav() {
   console.log("close");
   sidenav.classList.remove("active");
 }
+
+// let button = document.getElementsByClassName("buy-button-tbm")
+
+// function name(params) {
+
+// }

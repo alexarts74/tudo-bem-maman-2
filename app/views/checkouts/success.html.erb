@@ -1,24 +1,48 @@
 <div class="container">
-  <h1>Merci d'avoir passé commande chez nous !</h1>
+  <h1 class="title">Merci <%= @session_with_expand.customer_details.name %> d'avoir passé commande chez nous !</h1>
 
   <p>Vous allez recevoir un email de confirmation de votre commande.</p>
+  <!-- Voir pour rajouter le nom de l'utilisateur dans rails si compatible avec stripe -->
   <p>Mettre en place avec formulaire avant stripe</p>
+  <br>
+  <br>
+  <br>
   <div class="row">
-    <h3>Votre nouveau <%#= @clothe.category %> <strong><%#= @clothe.name %></strong></h3>
-    <p><%#= cl_image_tag @clothe.image.key, crop: :fill, class: "image-dashboard"%></p>
-    <div class="col-md-6">
+    <div class="col">
       <h2>Adresse de livraison</h2>
+      <br>
+      <br>
+      <br>
+      <br>
       <p><%#= @order.address %></p>
       <p><%#= @order.city %></p>
       <p><%#= @order.zipcode %></p>
       <p><%#= @order.country %></p>
     </div>
-    <div class="col-md-6">
+    <div class="col">
       <h2>Adresse de facturation</h2>
+      <br>
+      <br>
+      <br>
+      <br>
       <p><%#= @order.billing_address %></p>
       <p><%#= @order.billing_city %></p>
       <p><%#= @order.billing_zipcode %></p>
       <p><%#= @order.billing_country %></p>
     </div>
+    <div class="center">
+      <h3>Votre nouveau <%= @clothe.category %> <strong><%= @clothe.name %> arrive bientôt</strong></h3>
+      <div class="row">
+        <div class="col-6">
+          <p><%= cl_image_tag @clothe.image.key, crop: :fill, class: "image-dashboard"%></p>
+        </div>
+        <div class="col-6">
+          <p>Montant total de votre commande <%= @session_with_expand.amount_total / 100 %>€</p>
+          <p>Taille : <%= @clothe.size %></p>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </div>
