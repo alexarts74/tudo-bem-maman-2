@@ -62,7 +62,7 @@ class ClothesController < ApplicationController
   def remove_from_cart
     id = params[:id].to_i
     session[:cart].delete(id)
-    redirect_to clothe_path
+    redirect_to clothes_path
   end
 
   private
