@@ -6,16 +6,16 @@
       <li><%= link_to "Home", root_path, class: "menu" %></li>
       <li><%= link_to "T-shirts", clothes_path, class: "menu" %></li>
       <div class="session">
-        <% if user_signed_in? && current_user.admin == true %>
+      <% if user_signed_in? %>
+        <% if current_user.admin == true %>
           <%= link_to "Dashboard", dashboard_path, class: "account" %>
-          <%= link_to "Log out", destroy_user_session_path, class: "account",data: {turbo_method: :delete} %>
-        <% elsif user_signed_in? %>
-          <%= link_to "Log out", destroy_user_session_path, class: "account",data: {turbo_method: :delete} %>
-          <%#= link_to "Card",  %>
-        <% else %>
-          <%= link_to "Log in", new_user_session_path, class: "account" %>
-          <%= link_to "Create account", new_user_registration_path, class: "account" %>
         <% end %>
+        <%= link_to "Cart", my_cart_path, class: "account"  %>
+        <%= link_to "Log out", destroy_user_session_path, class: "account", data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "Log in", new_user_session_path, class: "account" %>
+        <%= link_to "Create account", new_user_registration_path, class: "account" %>
+      <% end %>
       </div>
     </ul>
   </div>
