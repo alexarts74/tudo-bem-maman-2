@@ -10,7 +10,9 @@
         <% if current_user.admin == true %>
           <%= link_to "Dashboard", dashboard_path, class: "account" %>
         <% end %>
-        <%= link_to "Cart", my_cart_path, class: "account"  %>
+        <% if @cart.present? %>
+          <%= link_to "Cart", my_cart_path, class: "account"  %>
+        <% end %>
         <%= link_to "Log out", destroy_user_session_path, class: "account", data: { turbo_method: :delete } %>
       <% else %>
         <%= link_to "Log in", new_user_session_path, class: "account" %>
