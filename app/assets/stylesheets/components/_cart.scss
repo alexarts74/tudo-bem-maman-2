@@ -32,3 +32,29 @@
   -webkit-transform: scale(1.2); /* Safari 3-8 */
   transform: scale(1.2);
 }
+
+@media only screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+
+  .clothes-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+  }
+  .button-text-delete-cart {
+    border: black;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    background-color: black;
+    width: fit-content;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform .2s;
+    margin-bottom: 24px;
+  }
+}
