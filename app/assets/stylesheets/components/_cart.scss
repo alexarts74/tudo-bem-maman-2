@@ -1,0 +1,34 @@
+.clothes-cart {
+  display: flex;
+  gap: 48px;
+}
+
+.image-clothe-cart {
+  height: 300px;
+  width: 300px;
+  border-radius: 4px;
+}
+
+.button-text-delete-cart {
+  border: black;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-size: 16px;
+  transition: transform .2s;
+  margin-bottom: 24px;
+}
+
+.button-text-delete-cart:hover{
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  -ms-transform: scale(1.2); /* IE 9 */
+  -webkit-transform: scale(1.2); /* Safari 3-8 */
+  transform: scale(1.2);
+}

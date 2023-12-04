@@ -1,11 +1,18 @@
 <h2 class="title">Mon Panier</h2>
 <div class="container">
   <% @cart.each do |clothe| %>
-    <p><%= cl_image_tag clothe.image.key, crop: :fill, class: "image-clothe"%></p>
-    <p><%= clothe.name %></p>
-    <p><%= clothe.price %></p>
-    <p><%= clothe.size %></p>
-    <p><%= link_to "Supprimer de mon panier", remove_from_cart_path(clothe), class: "button-text-cart", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
+    <div class="clothes-cart">
+      <div class="clothe-image">
+        <p><%= cl_image_tag clothe.image.key, crop: :fill, class: "image-clothe-cart"%></p>
+      </div>
+      <div class="clothe-info">
+        <p><%= clothe.name %></p>
+        <p>Prix : <%= clothe.price / 100 %></p>
+        <p>Taille : <%= clothe.size %></p>
+        <p>Description : <%= clothe.description %></p>
+        <p class="button-delete-cart"><%= link_to "Supprimer de mon panier", remove_from_cart_path(clothe), class: "button-text-delete-cart", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
+      </div>
+    </div>
   <% end %>
   <% if @cart.present? %>
     <button class="buy-button-tbm"><%= button_to "Acheter mon panier", clothe_checkout_path(@cart), class: "button-text-buy", method: :post, remote: true, data: { turbo: false }%></button>
