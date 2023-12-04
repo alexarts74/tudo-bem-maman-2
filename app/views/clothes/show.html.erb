@@ -6,11 +6,6 @@
       <h3><%= @clothe.name %></h3>
       <p class="price-show">Prix : <%= @clothe.price / 100 %>€</p>
       <p>Taille : <%= @clothe.size %></p>
-      <% if user_signed_in? %>
-        <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", clothe_checkout_path(@clothe), class: "button-text-buy", method: :post, remote: true, data: { turbo: false }%></button>
-      <% else %>
-        <button class="buy-button-tbm"><%= button_to "Acheter cette merveille", new_user_registration_path, class: "button-text-buy", method: :get%></button>
-      <% end %>
       <% if user_signed_in? && @cart.include?(@clothe) %>
         <p class="delete-cart-button"><%= link_to "Supprimer de mon panier", remove_from_cart_path(@clothe), class: "delete-cart-button-text", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
       <% elsif user_signed_in? %>
