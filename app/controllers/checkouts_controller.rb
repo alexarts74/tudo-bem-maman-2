@@ -7,12 +7,7 @@ class CheckoutsController < ApplicationController
       line_items: @cart.collect { |item| item.to_builder.attributes! },
       mode: 'payment',
       shipping_address_collection: {allowed_countries: ['FR']},
-      custom_text: {
-        shipping_address: {
-          message: 'Please note that we can\'t guarantee 2-day delivery for PO boxes at this time.',
-        },
         submit: {message: 'We\'ll email you instructions on how to get started.'},
-      },
       success_url: success_url + "?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: cancel_url
     })
