@@ -1,0 +1,8 @@
+[build]
+  command = "bundle install"
+
+[build.environment]
+  BUNDLE_PATH = "vendor/bundle"
+
+[build.lifecycle]
+  onbuild = "apt-get update && apt-get install -y libpq-dev"
