@@ -1,57 +1,71 @@
+// ========================================
+// FOOTER — Minimal, dark
+// ========================================
+
 .footer {
-  background-color: black;
-  height: 200px;
+  background: $black;
   width: 100%;
-  margin-top: 3%;
+  margin: 0;
+  padding: 48px 24px 24px;
 }
 
 .reseaux-sociaux {
   display: flex;
   justify-content: center;
-  padding-top: 50px;
-  color: white;
-  padding-bottom: 25px;
+  color: rgba(255, 255, 255, 0.5);
+  padding-bottom: 24px;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  margin: 0;
 }
 
 .fa-brands {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
   color: white;
 }
 
-.social-icons{
+.social-icons {
   display: flex;
   list-style: none;
   justify-content: center;
-  margin-top: 85px;
+  padding: 0;
+  margin: 0 0 32px;
 }
 
-.social-icons li{
-  margin: 0 20px;
-  margin-top: -80px;
+.social-icons li {
+  margin: 0 12px;
 }
 
-.social-icons li a{
-  border: 3px solid #546d58;
-  height: 40px;
+.social-icons li a {
   width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: white;
-  border-radius: 50%;
-  border-right: none;
-  border-top: none;
-  transition: 0.3s ease;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  background: none;
+  transition: all $transition-base;
+
+  &:hover {
+    color: $white;
+    border-color: $white;
+    transform: none;
+  }
 }
 
-.social-icons li a:hover{
-  border-top: 3px solid;
-  border-right:3px solid;
-  transform: rotate(360deg);
-  background-color: #546d58;
-  border-color: white;
+.footer-bottom {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }

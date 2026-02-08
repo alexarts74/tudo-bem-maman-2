@@ -1,30 +1,33 @@
-<h1 class="title">T-Shirts TBM</h1>
+<h1 class="page-title">COLLECTION</h1>
 <% if current_user && current_user.admin? %>
-  <%= link_to "Voir mes ventes", dashboard_path, class: "button_dashboard" %>
+  <div style="text-align: center; margin-bottom: 24px;">
+    <%= link_to "DASHBOARD", dashboard_path, class: "button_dashboard" %>
+  </div>
 <% end %>
 
-<div class="container">
-  <div class="clothe-cards">
-    <% @clothes.each do |clothe| %>
-      <div class="clothe-card">
-        <p class="img-clothe"><%= cl_image_tag clothe.image.key, crop: :fill, class: "img"%></p>
-          <div class="card-info">
-            <div class="flex-info">
-              <p class="title-card"><%= clothe.name %></p>
-              <p class="price"><%= clothe.price / 100 %>€</p>
-            </div>
-              <p>Categorie : <%= clothe.category %></p>
-          </div>
-        <% if user_signed_in? && current_user.admin == true %>
-          <p><%= clothe.sales_count %>product sold</p>
-          <p><%= link_to "Modifier", edit_clothe_path(clothe) %></p>
-        <% end %>
-        <p class="test-button"><%= link_to "Voir ce t-shirt", clothe_path(clothe), class: "button" %></p>
+<div class="clothe-cards">
+  <% @clothes.each do |clothe| %>
+    <div class="clothe-card">
+      <p class="img-clothe"><%= link_to cl_image_tag(clothe.image.key, crop: :fill, class: "img"), clothe_path(clothe) %></p>
+      <div class="card-info">
+        <div class="flex-info">
+          <p class="title-card"><%= clothe.name %></p>
+          <p class="price"><%= clothe.price / 100 %>&euro;</p>
+        </div>
+        <p><span class="category-badge"><%= clothe.category %></span></p>
       </div>
-    <% end %>
-  </div>
+      <% if user_signed_in? && current_user.admin == true %>
+        <div class="card-info" style="padding-top: 0;">
+          <p style="font-size: 11px; color: #737373;"><%= clothe.sales_count %> sold</p>
+        </div>
+      <% end %>
+      <p class="test-button"><%= link_to "VOIR", clothe_path(clothe), class: "button" %></p>
+    </div>
+  <% end %>
 </div>
 
-<% if user_signed_in? && current_user.admin ==  true %>
-  <p><%= link_to "Nouveau t-shirt", new_clothe_path %></p>
+<% if user_signed_in? && current_user.admin == true %>
+  <div style="text-align: center; margin: 48px 0;">
+    <%= link_to "NOUVEAU T-SHIRT", new_clothe_path, class: "button_dashboard" %>
+  </div>
 <% end %>

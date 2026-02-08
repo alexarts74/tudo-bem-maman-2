@@ -7,27 +7,78 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-var sidenav = document.getElementById("mySidenav");
-var openBtn = document.getElementById("openBtn");
-var closeBtn = document.getElementById("closeBtn");
+function initNavigation() {
+  var sidenav = document.getElementById("mySidenav");
+  var openBtn = document.getElementById("openBtn");
+  var closeBtn = document.getElementById("closeBtn");
+  var overlay = document.getElementById("sidenavOverlay");
+  var burgerIcon = openBtn ? openBtn.querySelector(".burger-icon") : null;
 
-openBtn.onclick = openNav;
-closeBtn.onclick = closeNav;
+  if (!sidenav || !openBtn || !closeBtn) return;
 
-/* Set the width of the side navigation to 250px */
-function openNav() {
-  console.log("open");
-  sidenav.classList.add("active");
+  function openNav() {
+    sidenav.classList.add("active");
+    if (overlay) overlay.classList.add("active");
+    if (burgerIcon) burgerIcon.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeNav() {
+    sidenav.classList.remove("active");
+    if (overlay) overlay.classList.remove("active");
+    if (burgerIcon) burgerIcon.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  openBtn.onclick = openNav;
+  closeBtn.onclick = closeNav;
+  if (overlay) overlay.onclick = closeNav;
+
+  // Navbar scroll effect
+  var navbar = document.querySelector(".navbar-lewagon");
+  if (navbar) {
+    window.addEventListener("scroll", function() {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  }
+
+  // IntersectionObserver for scroll animations
+  var animatedElements = document.querySelectorAll(
+    ".animate-fade-in-up, .animate-fade-in, .animate-slide-in-left, .animate-scale-in"
+  );
+
+  if (animatedElements.length > 0 && "IntersectionObserver" in window) {
+    animatedElements.forEach(function(el) {
+      el.style.opacity = "0";
+    });
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "";
+          entry.target.style.animationPlayState = "running";
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animatedElements.forEach(function(el) {
+      el.style.animationPlayState = "paused";
+      el.style.opacity = "0";
+      observer.observe(el);
+    });
+  }
+
+  // Stagger clothe-cards
+  var cards = document.querySelectorAll(".clothe-card");
+  cards.forEach(function(card, index) {
+    card.style.animationDelay = (index * 0.08) + "s";
+  });
 }
 
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-  console.log("close");
-  sidenav.classList.remove("active");
-}
-
-// let button = document.getElementsByClassName("buy-button-tbm")
-
-// function name(params) {
-
-// }
+document.addEventListener("DOMContentLoaded", initNavigation);
+document.addEventListener("turbo:load", initNavigation);

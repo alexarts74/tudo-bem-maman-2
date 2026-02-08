@@ -1,39 +1,98 @@
+// ========================================
+// AUTH PAGES — Minimal, centered
+// ========================================
+
 .login {
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 30px
+  margin: 48px 0 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: $font-size-2xl;
+}
+
+.form-log-in,
+.form-sign-up {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: $gray-600;
+    margin-bottom: 6px;
+  }
+
+  input:not([type="submit"]):not([type="checkbox"]) {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid $gray-300;
+    border-radius: 0;
+    font-size: $font-size-base;
+    transition: border-color $transition-fast;
+    background: $white;
+
+    &:focus {
+      border-color: $black;
+      outline: none;
+      box-shadow: none;
+    }
+  }
 }
 
 .submit {
-  background-color: #546d58;
-  color: white;
-  border-radius: 8px;
-  transition: transform .2s;
-  margin-bottom: -50px;
-}
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: $black;
+  color: $white;
+  border: 1px solid $black;
+  border-radius: 0;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all $transition-base;
+  margin: 24px 0 0;
 
-.submit:hover {
-  background-color: #546d58;
-  color: white;
-  -ms-transform: scale(1.2); /* IE 9 */
-  -webkit-transform: scale(1.2); /* Safari 3-8 */
-  transform: scale(1.2);
+  &:hover {
+    background: transparent;
+    color: $black;
+    transform: none;
+  }
 }
 
 .links-connexion-login {
-  text-decoration: none;
-  color: black;
-  margin-top: 68px;
-  margin-bottom: 90px;
+  text-align: center;
+  margin: 32px 0 64px;
+  font-size: $font-size-sm;
+  color: $gray-400;
+
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $gray-600;
+    }
+  }
 }
 
-@media only screen and (min-width: 768px) {
-
+@media (min-width: 768px) {
   .form-log-in {
     display: block;
   }
 
   .links-connexion-login {
-    margin-top: 65px;
+    margin-top: 48px;
   }
 }

@@ -1,110 +1,195 @@
+// ========================================
+// NAVBAR — Clean black bar
+// ========================================
+
 .navbar-lewagon {
-  padding-top: 30px;
-  padding-bottom: 20px;
+  background: $black;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  background: #546d58;
-  display: flex;
-  justify-content: center;
-  gap: 5%;
-  border-bottom: solid rgb(164, 164, 164);
+  padding: 0 24px;
+  height: 56px;
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: none;
+  transition: height $transition-base;
+
+  &.scrolled {
+    height: 48px;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-.logo{
+.navbar-burger {
   display: flex;
-  justify-content: start;
-  height: 50px;
-  width: 250px;
-}
-
-.session {
-  color: white;
-}
-
-.menu {
-  text-decoration: none;
-  color: white;
-}
-
-.account {
-  text-decoration: none;
-  color: white;
-}
-
-
-/* Sidenav menu */
-.sidenav {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: -250px;
-  background-color: #546d58;
-  padding-top: 60px;
-  transition: left 0.5s ease;
-}
-
-/* Sidenav menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: black;
-}
-
-.sidenav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Active class */
-.sidenav.active {
-  left: 0;
-}
-
-/* Close btn */
-.sidenav .close {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-}
-
-.sidenav .close:hover {
+  align-items: center;
   cursor: pointer;
 }
 
-/* Icône burger */
-.burger-icon span {
-  display: flex;
-  width: 35px;
-  height: 5px;
-  background-color: white;
-  margin: 6px 0;
+.navbar-logo {
+  color: $white;
+  text-decoration: none;
+  font-size: $font-size-md;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    color: $white;
+    opacity: 0.7;
+    text-decoration: none;
+  }
 }
+
+// ========================================
+// SIDENAV OVERLAY
+// ========================================
+
+.sidenav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-base, visibility $transition-base;
+  cursor: pointer;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// ========================================
+// SIDENAV — Full panel, outside navbar
+// ========================================
+
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: $gray-900;
+  z-index: 999;
+  padding: 80px 40px 40px;
+  transform: translateX(-100%);
+  transition: transform $transition-base;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  a {
+    display: block;
+    padding: 18px 0;
+    text-decoration: none;
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: color $transition-fast, padding-left $transition-base;
+
+    &:hover {
+      color: $white;
+      padding-left: 12px;
+    }
+  }
+}
+
+// Close button
+.sidenav-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 28px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color $transition-fast;
+  text-decoration: none !important;
+  border: none !important;
+
+  &:hover {
+    color: $white;
+    padding-left: 0 !important;
+  }
+}
+
+// Session links (login, cart, etc.)
+.sidenav-session {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  a {
+    font-size: $font-size-sm;
+    font-weight: 400;
+    letter-spacing: 2px;
+    padding: 12px 0;
+  }
+}
+
+// ========================================
+// BURGER ICON — Asymmetric bars
+// ========================================
 
 .burger-icon {
-  margin-left: 10%;
   cursor: pointer;
-}
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 0;
 
-#openBtn {
-  margin-top: -23px;
-  margin-right: 30px;
+  span {
+    display: block;
+    height: 2px;
+    background-color: $white;
+    transition: all $transition-base;
+
+    &:nth-child(1) { width: 24px; }
+    &:nth-child(2) { width: 18px; }
+    &:nth-child(3) { width: 12px; }
+  }
+
+  &:hover span {
+    width: 24px;
+  }
+
+  &.active span {
+    &:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+      width: 24px;
+    }
+    &:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
+    &:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+      width: 24px;
+    }
+  }
 }

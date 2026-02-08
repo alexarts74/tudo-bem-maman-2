@@ -1,12 +1,12 @@
-<h1>Création d'un nouveau t-shirt !</h1>
-  <div class="container">
-    <%= simple_form_for @clothe do |f| %>
-      <%= f.input :name %>
-      <%= f.input :price, placeholder: 'Le prix est divisé par 100 sur stripe donc créer un produit avec son prix X 100 / Exemple : prix = 1000 pour 10€ ' %>
-      <%= f.input :description %>
-      <%= f.input :category %>
-      <%= f.input :size %>
-      <%= f.input :image, as: :file %>
-      <%= f.button :submit %>
-    <% end %>
-  </div>
+<h1 class="page-title">NOUVEAU T-SHIRT</h1>
+<div class="container form-log-in">
+  <%= simple_form_for @clothe do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price, placeholder: 'Prix en centimes (ex: 2500 pour 25€)' %>
+    <%= f.input :description %>
+    <%= f.input :category %>
+    <%= f.input :size %>
+    <%= f.input :image, as: :file %>
+    <%= f.button :submit, "CREER", class: "submit" %>
+  <% end %>
+</div>

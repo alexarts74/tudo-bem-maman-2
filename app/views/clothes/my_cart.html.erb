@@ -1,5 +1,5 @@
-<h2 class="title">Mon Panier</h2>
-<div class="container">
+<h1 class="page-title">MON PANIER</h1>
+<div class="container" style="max-width: 800px;">
   <% @cart.each do |clothe| %>
     <div class="clothes-cart">
       <div class="clothe-image">
@@ -7,14 +7,16 @@
       </div>
       <div class="clothe-info-cart">
         <p><%= clothe.name %></p>
-        <p>Prix : <%= clothe.price / 100 %>€</p>
+        <p><%= clothe.price / 100 %>&euro;</p>
         <p>Taille : <%= clothe.size %></p>
-        <p>Description : <%= clothe.description %></p>
-        <p class="button-delete-cart"><%= link_to "Supprimer de mon panier", remove_from_cart_path(clothe), class: "button-text-delete-cart", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
+        <p><%= clothe.description %></p>
+        <p class="button-delete-cart"><%= link_to "SUPPRIMER", remove_from_cart_path(clothe), class: "button-text-delete-cart", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
       </div>
     </div>
   <% end %>
   <% if @cart.present? %>
-    <button class="buy-button-tbm"><%= button_to "Acheter mon panier", clothe_checkout_path(@cart), class: "button-text-buy", method: :post, remote: true, data: { turbo: false }%></button>
+    <div style="margin: 32px 0 64px;">
+      <button class="buy-button-tbm"><%= button_to "COMMANDER", clothe_checkout_path(@cart), class: "button-text-buy", method: :post, remote: true, data: { turbo: false }%></button>
+    </div>
   <% end %>
 </div>

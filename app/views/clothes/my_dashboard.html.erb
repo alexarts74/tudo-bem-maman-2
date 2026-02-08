@@ -1,17 +1,18 @@
-<h1 class="title">Dashboard des ventes</h1>
-<h3 class="title">Mettre toutes les infos de stripe pour Inès la femme de ma vie</h3>
+<h1 class="page-title">DASHBOARD</h1>
 
 <div class="container">
-  <h3 class="h3-dash">Tes t-shirts vendus !</h3>
-    <div class="clothe-cards">
-      <% @clothe.each do |clothe| %>
-        <div class="clothe-card">
-          <%= cl_image_tag clothe.image.key, crop: :fill, class: "image-dashboard"%></p>
-          <p><%= clothe.name %></p>
-          <p><%= clothe.price / 100 %>€</p>
-          <p><%= clothe.sales_count %>t-shirt vendu(s)</p>
-          <p>Total gagné sur ce tshirt <%= clothe.sales_count * clothe.price / 100 %>€</p>
+  <h3 class="h3-dash">Ventes</h3>
+  <div class="clothe-cards">
+    <% @clothe.each do |clothe| %>
+      <div class="clothe-card">
+        <%= cl_image_tag clothe.image.key, crop: :fill, class: "image-dashboard"%>
+        <div class="card-info">
+          <p style="font-weight: 600; color: #0a0a0a; text-transform: uppercase; letter-spacing: 0.5px;"><%= clothe.name %></p>
+          <p><%= clothe.price / 100 %>&euro;</p>
+          <p><%= clothe.sales_count %> vendu(s)</p>
+          <p style="font-weight: 600;">Total : <%= clothe.sales_count * clothe.price / 100 %>&euro;</p>
         </div>
-      <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

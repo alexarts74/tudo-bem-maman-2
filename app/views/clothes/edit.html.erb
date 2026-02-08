@@ -1,12 +1,12 @@
-<h1>Modification d'un t-shirt !</h1>
-  <div class="container">
-    <%= simple_form_for @clothe do |f| %>
-      <%= f.input :name %>
-      <%= f.input :price %>
-      <%= f.input :description %>
-      <%= f.input :category %>
-      <%= f.input :size %>
-      <%= f.input :image, as: :file %>
-      <%= f.button :submit %>
-    <% end %>
-  </div>
+<h1 class="page-title">MODIFIER</h1>
+<div class="container form-log-in">
+  <%= simple_form_for @clothe do |f| %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :category %>
+    <%= f.input :size %>
+    <%= f.input :image, as: :file %>
+    <%= f.button :submit, "SAUVEGARDER", class: "submit" %>
+  <% end %>
+</div>

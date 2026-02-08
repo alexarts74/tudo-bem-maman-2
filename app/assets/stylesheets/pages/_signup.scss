@@ -1,17 +1,26 @@
 .links-connexion-signup {
-  margin-top: 70px;
-  text-decoration: none;
-  color: black;
+  text-align: center;
+  margin: 32px 0 64px;
+  font-size: $font-size-sm;
+  color: $gray-400;
+
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $gray-600;
+    }
+  }
 }
 
-
-@media only screen and (min-width: 768px) {
-
+@media (min-width: 768px) {
   .form-sign-up {
     display: block;
   }
 
   .links-connexion-signup {
-    margin-top: 68px;
+    margin-top: 48px;
   }
 }
