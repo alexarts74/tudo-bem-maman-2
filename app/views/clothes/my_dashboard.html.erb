@@ -5,7 +5,7 @@
   <div class="clothe-cards">
     <% @clothe.each do |clothe| %>
       <div class="clothe-card">
-        <%= cl_image_tag clothe.image.key, crop: :fill, class: "image-dashboard"%>
+        <%= image_tag url_for(clothe.image), class: "image-dashboard" if clothe.image.attached? %>
         <div class="card-info">
           <p style="font-weight: 600; color: #0a0a0a; text-transform: uppercase; letter-spacing: 0.5px;"><%= clothe.name %></p>
           <p><%= clothe.price / 100 %>&euro;</p>

@@ -1,33 +1,77 @@
 // ========================================
-// PRODUCT GRID — Clean, minimal cards
+// COLLECTION PAGE
 // ========================================
+
+// --- Header ---
+.collection-header {
+  text-align: center;
+  padding: 64px 24px 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .page-title {
   font-weight: 800;
-  text-align: center;
   text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: $font-size-2xl;
-  margin: 48px 0 16px;
+  letter-spacing: 6px;
+  font-size: $font-size-3xl;
+  margin: 0 0 16px;
   color: $black;
+}
+
+.collection-subtitle {
+  font-size: $font-size-base;
+  color: $gray-400;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.collection-count {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $gray-400;
+  margin: 12px 0 0;
+  font-weight: 500;
+}
+
+.collection-admin-actions {
+  margin-top: 24px;
+}
+
+// --- Grid container ---
+.collection-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
 }
 
 .clothe-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2px;
-  margin: 0;
-  padding: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 32px !important;
 }
 
+// --- Card ---
 .clothe-card {
   background: $white;
   overflow: hidden;
-  position: relative;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 4px;
+  transition: transform $transition-base, box-shadow $transition-base;
   animation: fadeIn 0.5s ease both;
 
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
   &:hover .img {
-    transform: scale(1.04);
+    transform: scale(1.05);
   }
 }
 
@@ -46,16 +90,21 @@
 }
 
 .card-info {
-  padding: 16px 16px 8px;
+  padding: 20px;
 }
 
 .title-card {
-  font-size: $font-size-base;
-  font-weight: 500;
+  font-size: $font-size-md;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-align: left;
-  margin: 0;
+  letter-spacing: 1px;
+  margin: 0 0 10px;
+}
+
+.card-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .category-badge {
@@ -63,11 +112,36 @@
   font-size: $font-size-xs;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: $gray-400;
+  color: $gray-500;
   font-weight: 500;
-  padding: 0;
-  background: none;
-  border-radius: 0;
+  background: $gray-100;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.size-badge {
+  display: inline-block;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $gray-500;
+  font-weight: 600;
+  background: $gray-100;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.price {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $black;
+  margin: 0;
+}
+
+.sales-count {
+  font-size: $font-size-xs;
+  color: $gray-400;
+  margin: 8px 0 0;
 }
 
 .flex-info {
@@ -76,18 +150,11 @@
   align-items: baseline;
 }
 
-.price {
-  font-size: $font-size-base;
-  font-weight: 600;
-  color: $black;
-  text-align: right;
-}
-
-// View button — minimal
+// --- Buttons ---
 .button {
   display: block;
   width: 100%;
-  padding: 12px 20px;
+  padding: 14px 20px;
   background: $black;
   color: $white;
   text-decoration: none;
@@ -97,7 +164,7 @@
   font-weight: 600;
   letter-spacing: 2px;
   border: none;
-  transition: background $transition-base, color $transition-base;
+  transition: background $transition-base;
 
   &:hover {
     background: $gray-800;
@@ -107,15 +174,9 @@
   }
 }
 
-.test-button {
-  padding: 0 16px 16px;
-  margin: 0;
-}
-
-// Dashboard button
 .button_dashboard {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 14px 36px;
   background: $black;
   color: $white;
   text-decoration: none;
@@ -125,15 +186,55 @@
   font-weight: 600;
   letter-spacing: 2px;
   border: 1px solid $black;
-  margin: 0 auto 32px;
-  width: auto;
   transition: all $transition-base;
 
   &:hover {
     background: transparent;
     color: $black;
     text-decoration: none;
-    transform: none;
+  }
+}
+
+.collection-admin-bottom {
+  text-align: center;
+  padding: 0 24px 80px;
+}
+
+// --- Responsive ---
+@media (max-width: 992px) {
+  .clothe-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .collection-header {
+    padding: 40px 16px 0;
+  }
+
+  .page-title {
+    font-size: $font-size-2xl;
+    letter-spacing: 4px;
+  }
+
+  .collection-container {
+    padding: 32px 16px 64px;
+  }
+
+  .clothe-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .card-info {
+    padding: 16px;
+  }
+
+  .button_dashboard {
+    display: block;
+    text-align: center;
+    margin: 0 16px;
   }
 }
 
@@ -150,15 +251,7 @@
   line-height: 1.7;
 }
 
-@media (max-width: 768px) {
-  .clothe-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-  }
-
-  .button_dashboard {
-    display: block;
-    text-align: center;
-    margin: 0 16px 24px;
-  }
+.test-button {
+  padding: 0 16px 16px;
+  margin: 0;
 }

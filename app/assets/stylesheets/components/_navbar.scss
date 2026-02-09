@@ -35,12 +35,52 @@
   letter-spacing: 4px;
   text-transform: uppercase;
   transition: opacity $transition-fast;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
   &:hover {
     color: $white;
     opacity: 0.7;
     text-decoration: none;
   }
+}
+
+.navbar-cart {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: $white;
+  font-size: $font-size-lg;
+  text-decoration: none;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    color: $white;
+    opacity: 0.7;
+    text-decoration: none;
+  }
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: $white;
+  color: $black;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.navbar-cart-placeholder {
+  width: 24px;
 }
 
 // ========================================

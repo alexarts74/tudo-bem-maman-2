@@ -1,6 +1,16 @@
 // ========================================
-// FOOTER — Minimal, dark
+// FOOTER — Minimal, dark + sticky bottom
 // ========================================
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
 
 .footer {
   background: $black;

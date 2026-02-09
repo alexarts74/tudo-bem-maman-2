@@ -47,7 +47,7 @@ rails assets:precompile    # Precompile for production
 
 ### Models & Stripe Integration
 - **User** — Devise auth, `admin` boolean flag, `stripe_customer_id`. A Stripe Customer is created via `after_create` callback.
-- **Clothe** — Product with name, description, price (integer, cents), size, category, sales_count. A Stripe Product + Price are created via `after_create` callback. Price updates trigger a new Stripe Price via `after_update`.
+- **Clothe** — Product with name, description, price (integer, cents), size, category, sales_count. `belongs_to :user` (the admin who created it). Has one attached image (Active Storage). A Stripe Product + Price are created via `after_create` callback. Price updates trigger a new Stripe Price via `after_update`.
 
 ### Controllers
 - **ClothesController** — CRUD for clothes, admin-gated create/edit/destroy, plus cart actions (`add_to_cart`, `remove_from_cart`, `my_cart`) and admin `my_dashboard`.
@@ -55,15 +55,18 @@ rails assets:precompile    # Precompile for production
 - **WebhooksController** — Receives Stripe `checkout.session.completed` webhooks, increments `sales_count` on purchased items.
 
 ### Shopping Cart
-Session-based (`session[:cart]`), initialized in `ApplicationController` via `load_cart` before_action. Stores Stripe price IDs.
+Session-based (`session[:cart]`), initialized in `ApplicationController` via `initialize_session` and `load_cart` before_actions. Stores Clothe record IDs (not Stripe IDs). `load_cart` sets `@cart` as an array of `Clothe` records available in all controllers/views.
 
 ### Authentication & Authorization
 Devise with `authenticate_user!` in ApplicationController. Public access: home, index, show. Admin checks done in controller before_actions.
 
 ### Frontend
-- Hotwire (Turbo Rails + Stimulus) with Bootstrap 5.2.3
+- Hotwire (Turbo Rails + Stimulus) with Bootstrap 5.3, Font Awesome 6
 - Webpack bundles JS from `app/javascript/application.js` → `app/assets/builds/`
 - SCSS in `app/assets/stylesheets/` (organized: config/, components/, pages/)
+- Forms use `simple_form` gem
+- Layout partials: `shared/_navbar`, `shared/_footer`, `shared/_flashes`
+- Stripe.js loaded globally in the layout head
 
 ### Storage
 Active Storage with Cloudinary service for all environments (configured in `config/storage.yml` and `cloudinary.yml`).

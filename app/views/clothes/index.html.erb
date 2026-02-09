@@ -1,33 +1,41 @@
-<h1 class="page-title">COLLECTION</h1>
-<% if current_user && current_user.admin? %>
-  <div style="text-align: center; margin-bottom: 24px;">
-    <%= link_to "DASHBOARD", dashboard_path, class: "button_dashboard" %>
-  </div>
-<% end %>
-
-<div class="clothe-cards">
-  <% @clothes.each do |clothe| %>
-    <div class="clothe-card">
-      <p class="img-clothe"><%= link_to cl_image_tag(clothe.image.key, crop: :fill, class: "img"), clothe_path(clothe) %></p>
-      <div class="card-info">
-        <div class="flex-info">
-          <p class="title-card"><%= clothe.name %></p>
-          <p class="price"><%= clothe.price / 100 %>&euro;</p>
-        </div>
-        <p><span class="category-badge"><%= clothe.category %></span></p>
-      </div>
-      <% if user_signed_in? && current_user.admin == true %>
-        <div class="card-info" style="padding-top: 0;">
-          <p style="font-size: 11px; color: #737373;"><%= clothe.sales_count %> sold</p>
-        </div>
-      <% end %>
-      <p class="test-button"><%= link_to "VOIR", clothe_path(clothe), class: "button" %></p>
+<div class="collection-header">
+  <h1 class="page-title">COLLECTION</h1>
+  <p class="collection-subtitle">Découvrez nos pièces en coton 100% — confort et style streetwear.</p>
+  <p class="collection-count"><%= @clothes.count %> produits</p>
+  <% if current_user && current_user.admin? %>
+    <div class="collection-admin-actions">
+      <%= link_to "DASHBOARD", dashboard_path, class: "button_dashboard" %>
     </div>
   <% end %>
 </div>
 
+<div class="collection-container">
+  <div class="clothe-cards">
+    <% @clothes.each_with_index do |clothe, index| %>
+      <%= link_to clothe_path(clothe), class: "clothe-card", style: "animation-delay: #{index * 0.08}s" do %>
+        <div class="img-clothe">
+          <% if clothe.image.attached? %>
+            <%= image_tag url_for(clothe.image), class: "img", alt: clothe.name %>
+          <% end %>
+        </div>
+        <div class="card-info">
+          <p class="title-card"><%= clothe.name %></p>
+          <div class="card-meta">
+            <span class="category-badge"><%= clothe.category %></span>
+            <span class="size-badge"><%= clothe.size %></span>
+          </div>
+          <p class="price"><%= clothe.price / 100 %>&euro;</p>
+          <% if user_signed_in? && current_user.admin == true %>
+            <p class="sales-count"><%= clothe.sales_count %> vendu(s)</p>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 <% if user_signed_in? && current_user.admin == true %>
-  <div style="text-align: center; margin: 48px 0;">
+  <div class="collection-admin-bottom">
     <%= link_to "NOUVEAU T-SHIRT", new_clothe_path, class: "button_dashboard" %>
   </div>
 <% end %>

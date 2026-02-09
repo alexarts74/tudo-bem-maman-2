@@ -1,52 +1,377 @@
 // ========================================
-// PRODUCT SHOW PAGE — Clean editorial
+// PRODUCT SHOW PAGE — Complete boutique
 // ========================================
 
-.container-tbm {
-  display: flex;
-  gap: 64px;
-  max-width: 1100px;
+// --- Page wrapper ---
+.product-page {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 0 24px 80px;
 }
 
-.image-clothe {
-  width: 50%;
-  max-width: 560px;
+// --- Breadcrumb ---
+.product-breadcrumb {
+  padding: 24px 0;
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $gray-400;
+
+  a {
+    color: $gray-400;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}
+
+.breadcrumb-sep {
+  margin: 0 8px;
+  color: $gray-300;
+}
+
+.breadcrumb-current {
+  color: $gray-600;
+}
+
+// --- Main layout (2 columns) ---
+.product-main {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+// --- Gallery ---
+.product-gallery {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-image {
+  width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 0;
-  box-shadow: none;
+  border-radius: 4px;
   animation: fadeIn 0.6s ease both;
 }
 
-.tshirt-info {
+// --- Info column ---
+.product-info {
   flex: 1;
-  padding-top: 16px;
+  min-width: 0;
+  padding-top: 8px;
   animation: fadeIn 0.6s ease 0.15s both;
+}
 
-  h3 {
-    font-size: $font-size-2xl;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
+.product-name {
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 8px;
+}
+
+.product-price {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $black;
+  margin: 0 0 24px;
+}
+
+// --- Size ---
+.product-size {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.product-size-label {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $gray-500;
+  font-weight: 500;
+}
+
+.product-size-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid $black;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// --- Cart buttons ---
+.cart-button-tbm {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0 0 16px;
+  width: 100%;
+  height: auto;
+}
+
+.btn-add-cart {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background: $black;
+  color: $white;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: 1px solid $black;
+  margin: 0;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $gray-800;
+    color: $white;
+    text-decoration: none;
+    border-color: $gray-800;
   }
+}
+
+.btn-login {
+  margin-bottom: 24px;
+}
+
+.product-cart-action {
+  margin: 0 0 16px;
+}
+
+.btn-remove-cart {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background: transparent;
+  color: $red;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: 1px solid $gray-200;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $red;
+    color: $white;
+    text-decoration: none;
+    border-color: $red;
+  }
+}
+
+// --- Description ---
+.product-description {
+  margin: 24px 0;
+  padding-top: 24px;
+  border-top: 1px solid $gray-200;
 
   p {
     color: $gray-500;
     line-height: 1.7;
-    margin-bottom: 8px;
+    font-size: $font-size-base;
+    margin: 0;
   }
 }
 
-.price-show {
-  font-size: $font-size-xl;
-  font-weight: 700;
-  color: $black !important;
-  margin-bottom: 24px !important;
+// --- Accordions (details/summary) ---
+.product-accordion {
+  border-top: 1px solid $gray-200;
+
+  &:last-of-type {
+    border-bottom: 1px solid $gray-200;
+  }
 }
 
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  list-style: none;
+  color: $black;
+  transition: color $transition-fast;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: "+";
+    font-size: $font-size-lg;
+    font-weight: 300;
+    color: $gray-400;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    color: $gray-600;
+  }
+}
+
+.product-accordion[open] .accordion-header::after {
+  transform: rotate(45deg);
+}
+
+.accordion-content {
+  padding: 0 0 20px;
+  animation: fadeIn 0.3s ease;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    padding: 6px 0;
+    color: $gray-500;
+    font-size: $font-size-base;
+    line-height: 1.6;
+
+    &::before {
+      content: "—";
+      margin-right: 8px;
+      color: $gray-300;
+    }
+  }
+}
+
+// --- Size guide table ---
+.size-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: $font-size-xs;
+    color: $gray-500;
+    border-bottom: 1px solid $gray-200;
+  }
+
+  td {
+    padding: 10px 12px;
+    color: $gray-600;
+    border-bottom: 1px solid $gray-100;
+  }
+
+  tbody tr:hover {
+    background: $gray-100;
+  }
+}
+
+// --- Admin actions ---
+.product-admin-actions {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid $gray-200;
+  display: flex;
+  gap: 24px;
+}
+
+.admin-link {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $gray-500;
+  text-decoration: underline;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $black;
+  }
+
+  &--danger {
+    color: $red;
+
+    &:hover {
+      color: darken($red, 10%);
+    }
+  }
+}
+
+// --- Recommendations ---
+.product-recommendations {
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 1px solid $gray-200;
+}
+
+.recommendations-title {
+  font-size: $font-size-md;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+// --- Responsive ---
+@media (max-width: 992px) {
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-main {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .product-page {
+    padding: 0 16px 64px;
+  }
+
+  .product-name {
+    font-size: $font-size-xl;
+  }
+
+  .recommendations-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .recommendations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// --- Legacy classes (kept for cart/other pages) ---
 .buy-button-tbm {
   border: none;
   background: none;
@@ -77,93 +402,6 @@
     background: $gray-800;
     color: $white;
     text-decoration: none;
-    transform: none;
     border-color: $gray-800;
   }
-}
-
-.cart-button-tbm {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0 0 16px;
-  width: 100%;
-  height: auto;
-}
-
-.button-text-cart {
-  display: block;
-  width: 100%;
-  padding: 16px 24px;
-  background: transparent;
-  color: $black;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: $font-size-xs;
-  font-weight: 600;
-  letter-spacing: 2px;
-  border: 1px solid $black;
-  margin: 0;
-  transition: all $transition-base;
-  cursor: pointer;
-
-  &:hover {
-    background: $black;
-    color: $white;
-    text-decoration: none;
-    transform: none;
-  }
-}
-
-.delete-cart-button {
-  margin: 16px 0 0;
-}
-
-.delete-cart-button-text {
-  display: block;
-  width: 100%;
-  padding: 16px 24px;
-  background: transparent;
-  color: $red;
-  text-decoration: none;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: $font-size-xs;
-  font-weight: 600;
-  letter-spacing: 2px;
-  border: 1px solid $gray-200;
-  margin: 0;
-  transition: all $transition-base;
-
-  &:hover {
-    background: $red;
-    color: $white;
-    text-decoration: none;
-    transform: none;
-    border-color: $red;
-  }
-}
-
-@media (max-width: 768px) {
-  .container-tbm {
-    flex-direction: column;
-    gap: 24px;
-    padding: 24px 16px;
-  }
-
-  .image-clothe {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .tshirt-info {
-    padding-top: 0;
-  }
-}
-
-.price {
-  font-size: $font-size-lg;
-  font-weight: 700;
-  color: $black;
 }

@@ -1,22 +1,51 @@
-<h1 class="page-title">MON PANIER</h1>
-<div class="container" style="max-width: 800px;">
-  <% @cart.each do |clothe| %>
-    <div class="clothes-cart">
-      <div class="clothe-image">
-        <p><%= cl_image_tag clothe.image.key, crop: :fill, class: "image-clothe-cart"%></p>
+<div class="cart-page">
+  <% if @cart.present? %>
+    <div class="cart-header">
+      <h1 class="cart-title">MON PANIER</h1>
+      <span class="cart-count"><%= @cart.count %> article<%= @cart.count > 1 ? "s" : "" %></span>
+    </div>
+
+    <div class="cart-items">
+      <% @cart.each do |clothe| %>
+        <div class="cart-item">
+          <div class="cart-item-image">
+            <% if clothe.image.attached? %>
+              <%= link_to clothe_path(clothe) do %>
+                <%= image_tag url_for(clothe.image), alt: clothe.name %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="cart-item-details">
+            <div class="cart-item-info">
+              <%= link_to clothe.name, clothe_path(clothe), class: "cart-item-name" %>
+              <span class="cart-item-size"><%= clothe.size %></span>
+            </div>
+            <p class="cart-item-price"><%= clothe.price / 100 %>&euro;</p>
+          </div>
+          <div class="cart-item-remove">
+            <%= link_to remove_from_cart_path(clothe), class: "cart-remove-btn", data: { turbo_method: :delete, turbo_confirm: "Retirer cet article du panier ?" } do %>
+              <i class="fa-solid fa-xmark"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="cart-summary">
+      <div class="cart-total">
+        <span class="cart-total-label">TOTAL</span>
+        <span class="cart-total-price"><%= @cart.sum(&:price) / 100 %>&euro;</span>
       </div>
-      <div class="clothe-info-cart">
-        <p><%= clothe.name %></p>
-        <p><%= clothe.price / 100 %>&euro;</p>
-        <p>Taille : <%= clothe.size %></p>
-        <p><%= clothe.description %></p>
-        <p class="button-delete-cart"><%= link_to "SUPPRIMER", remove_from_cart_path(clothe), class: "button-text-delete-cart", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
+      <div class="cart-checkout">
+        <%= button_to "COMMANDER", clothe_checkout_path(@cart), class: "cart-checkout-btn", method: :post, data: { turbo: false } %>
       </div>
     </div>
-  <% end %>
-  <% if @cart.present? %>
-    <div style="margin: 32px 0 64px;">
-      <button class="buy-button-tbm"><%= button_to "COMMANDER", clothe_checkout_path(@cart), class: "button-text-buy", method: :post, remote: true, data: { turbo: false }%></button>
+  <% else %>
+    <div class="cart-empty">
+      <i class="fa-solid fa-bag-shopping cart-empty-icon"></i>
+      <h1 class="cart-empty-title">VOTRE PANIER EST VIDE</h1>
+      <p class="cart-empty-text">Découvrez notre collection et trouvez votre bonheur.</p>
+      <%= link_to "VOIR LA COLLECTION", clothes_path, class: "cart-empty-btn" %>
     </div>
   <% end %>
 </div>

@@ -1,18 +1,136 @@
-<div class="container-tbm">
-  <p><%= cl_image_tag @clothe.image.key, crop: :fill, class: "image-clothe"%></p>
-    <div class="tshirt-info">
-      <h3><%= @clothe.name %></h3>
-      <p class="price-show"><%= @clothe.price / 100 %>&euro;</p>
-      <p>Taille : <%= @clothe.size %></p>
-      <p>Description : <%= @clothe.description %></p>
-      <% if user_signed_in? && @cart.include?(@clothe) %>
-        <p class="delete-cart-button"><%= link_to "SUPPRIMER DU PANIER", remove_from_cart_path(@clothe), class: "delete-cart-button-text", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt de ton panier mon reuf ?" } %></p>
-      <% elsif user_signed_in? %>
-        <button class="cart-button-tbm"><%= button_to "AJOUTER AU PANIER", add_to_cart_path(@clothe), class: "button-text-cart", method: :post, remote: true, data: { turbo: false }%></button>
-      <% end %>
-      <% if user_signed_in? && current_user.admin == true %>
-        <p style="margin-top: 32px;"><%= link_to "Modifier", edit_clothe_path(@clothe), style: "text-decoration: underline;" %></p>
-        <p><%= link_to "Supprimer", clothe_path(@clothe), style: "color: #ef4444; text-decoration: underline;", data: { turbo_method: :delete, turbo_confirm: "T'es sur de toi tu veux supprimer ce tshirt mon reuf ?" } %></p>
+<div class="product-page">
+  <!-- Breadcrumb -->
+  <nav class="product-breadcrumb">
+    <%= link_to "Collection", clothes_path %> <span class="breadcrumb-sep">/</span> <span class="breadcrumb-current"><%= @clothe.category.capitalize %></span>
+  </nav>
+
+  <!-- Main product section -->
+  <div class="product-main">
+    <!-- Image -->
+    <div class="product-gallery">
+      <% if @clothe.image.attached? %>
+        <%= image_tag url_for(@clothe.image), class: "product-image", alt: @clothe.name %>
       <% end %>
     </div>
+
+    <!-- Info -->
+    <div class="product-info">
+      <h1 class="product-name"><%= @clothe.name %></h1>
+      <p class="product-price"><%= @clothe.price / 100 %>&euro;</p>
+
+      <div class="product-size">
+        <span class="product-size-label">Taille</span>
+        <span class="product-size-badge"><%= @clothe.size %></span>
+      </div>
+
+      <% if user_signed_in? && @cart.include?(@clothe) %>
+        <p class="product-cart-action">
+          <%= link_to "SUPPRIMER DU PANIER", remove_from_cart_path(@clothe), class: "btn-remove-cart", data: { turbo_method: :delete, turbo_confirm: "Retirer ce produit du panier ?" } %>
+        </p>
+      <% elsif user_signed_in? %>
+        <button class="cart-button-tbm"><%= button_to "AJOUTER AU PANIER", add_to_cart_path(@clothe), class: "btn-add-cart", method: :post, remote: true, data: { turbo: false } %></button>
+      <% else %>
+        <%= link_to "SE CONNECTER POUR ACHETER", new_user_session_path, class: "btn-add-cart btn-login" %>
+      <% end %>
+
+      <div class="product-description">
+        <p><%= @clothe.description %></p>
+      </div>
+
+      <!-- Accordions -->
+      <details class="product-accordion">
+        <summary class="accordion-header">Composition</summary>
+        <div class="accordion-content">
+          <ul>
+            <li>100% coton peigné biologique</li>
+            <li>Grammage : 180g/m²</li>
+            <li>Impression par sérigraphie haute qualité</li>
+            <li>Col côtelé renforcé</li>
+            <li>Coutures doubles sur ourlets</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="product-accordion">
+        <summary class="accordion-header">Entretien</summary>
+        <div class="accordion-content">
+          <ul>
+            <li>Lavage en machine à 30°C maximum</li>
+            <li>Ne pas utiliser de sèche-linge</li>
+            <li>Repassage à température moyenne, sur l'envers</li>
+            <li>Ne pas utiliser de javel</li>
+            <li>Séchage à plat recommandé</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="product-accordion">
+        <summary class="accordion-header">Guide des tailles</summary>
+        <div class="accordion-content">
+          <table class="size-guide-table">
+            <thead>
+              <tr>
+                <th>Taille</th>
+                <th>Largeur (cm)</th>
+                <th>Longueur (cm)</th>
+                <th>Manches (cm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>S</td><td>48</td><td>68</td><td>19</td></tr>
+              <tr><td>M</td><td>51</td><td>71</td><td>20</td></tr>
+              <tr><td>L</td><td>54</td><td>74</td><td>21</td></tr>
+              <tr><td>XL</td><td>57</td><td>77</td><td>22</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="product-accordion">
+        <summary class="accordion-header">Livraison & Retours</summary>
+        <div class="accordion-content">
+          <ul>
+            <li><strong>Livraison standard gratuite</strong> — 3 à 5 jours ouvrés</li>
+            <li><strong>Livraison express 4,90€</strong> — 1 à 2 jours ouvrés</li>
+            <li><strong>Retours gratuits</strong> sous 30 jours</li>
+            <li>Échange possible en cas de mauvaise taille</li>
+          </ul>
+        </div>
+      </details>
+
+      <% if user_signed_in? && current_user.admin? %>
+        <div class="product-admin-actions">
+          <%= link_to "Modifier", edit_clothe_path(@clothe), class: "admin-link" %>
+          <%= link_to "Supprimer", clothe_path(@clothe), class: "admin-link admin-link--danger", data: { turbo_method: :delete, turbo_confirm: "Supprimer ce produit définitivement ?" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Recommendations -->
+  <% recommendations = Clothe.where.not(id: @clothe.id).order("RANDOM()").limit(4) %>
+  <% if recommendations.any? %>
+    <div class="product-recommendations">
+      <h2 class="recommendations-title">VOUS AIMEREZ AUSSI</h2>
+      <div class="recommendations-grid">
+        <% recommendations.each do |clothe| %>
+          <%= link_to clothe_path(clothe), class: "clothe-card" do %>
+            <div class="img-clothe">
+              <% if clothe.image.attached? %>
+                <%= image_tag url_for(clothe.image), class: "img", alt: clothe.name %>
+              <% end %>
+            </div>
+            <div class="card-info">
+              <p class="title-card"><%= clothe.name %></p>
+              <div class="card-meta">
+                <span class="category-badge"><%= clothe.category %></span>
+                <span class="size-badge"><%= clothe.size %></span>
+              </div>
+              <p class="price"><%= clothe.price / 100 %>&euro;</p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

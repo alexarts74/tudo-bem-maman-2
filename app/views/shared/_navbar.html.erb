@@ -30,4 +30,14 @@
     </span>
   </a>
   <a href="/" class="navbar-logo">TBM</a>
+  <% if user_signed_in? %>
+    <%= link_to my_cart_path, class: "navbar-cart" do %>
+      <i class="fa-solid fa-bag-shopping"></i>
+      <% if @cart.present? %>
+        <span class="cart-badge"><%= @cart.count %></span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="navbar-cart-placeholder"></div>
+  <% end %>
 </div>
