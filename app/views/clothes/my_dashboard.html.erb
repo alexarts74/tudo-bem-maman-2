@@ -1,18 +1,136 @@
-<h1 class="page-title">DASHBOARD</h1>
+<%# Section 1 : Header %>
+<div class="dashboard-header">
+  <h1 class="page-title">DASHBOARD</h1>
+  <p class="dashboard-subtitle">Vue d'ensemble des ventes</p>
+</div>
 
-<div class="container">
-  <h3 class="h3-dash">Ventes</h3>
-  <div class="clothe-cards">
-    <% @clothe.each do |clothe| %>
-      <div class="clothe-card">
-        <%= image_tag url_for(clothe.image), class: "image-dashboard" if clothe.image.attached? %>
-        <div class="card-info">
-          <p style="font-weight: 600; color: #0a0a0a; text-transform: uppercase; letter-spacing: 0.5px;"><%= clothe.name %></p>
-          <p><%= clothe.price / 100 %>&euro;</p>
-          <p><%= clothe.sales_count %> vendu(s)</p>
-          <p style="font-weight: 600;">Total : <%= clothe.sales_count * clothe.price / 100 %>&euro;</p>
-        </div>
-      </div>
-    <% end %>
+<div class="dashboard-container">
+
+  <%# Section 2 : KPI Cards %>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <i class="fa-solid fa-euro-sign kpi-icon"></i>
+      <p class="kpi-value"><%= number_to_currency(@total_revenue / 100.0, unit: "€", format: "%n%u", precision: 0) %></p>
+      <p class="kpi-label">Chiffre d'affaires</p>
+    </div>
+    <div class="kpi-card">
+      <i class="fa-solid fa-bag-shopping kpi-icon"></i>
+      <p class="kpi-value"><%= @total_sold %></p>
+      <p class="kpi-label">Articles vendus</p>
+    </div>
+    <div class="kpi-card">
+      <i class="fa-solid fa-shirt kpi-icon"></i>
+      <p class="kpi-value"><%= @product_count %></p>
+      <p class="kpi-label">Produits</p>
+    </div>
+    <div class="kpi-card">
+      <i class="fa-solid fa-calculator kpi-icon"></i>
+      <p class="kpi-value"><%= number_to_currency(@average_cart / 100.0, unit: "€", format: "%n%u", precision: 0) %></p>
+      <p class="kpi-label">Panier moyen</p>
+    </div>
   </div>
+
+  <%# Section 3 : Performance par catégorie %>
+  <% if @category_stats.any? %>
+    <div class="dashboard-section">
+      <h2 class="section-title">Performance par catégorie</h2>
+      <div class="category-bars">
+        <% @category_stats.each do |stat| %>
+          <div class="category-bar-row">
+            <div class="category-bar-header">
+              <span class="category-bar-name"><%= stat[:name] %></span>
+              <span class="category-bar-details">
+                <%= number_to_currency(stat[:revenue] / 100.0, unit: "€", format: "%n%u", precision: 0) %>
+                &middot; <%= stat[:units] %> vendu(s)
+                &middot; <%= stat[:percentage] %>%
+              </span>
+            </div>
+            <div class="category-bar-track">
+              <div class="category-bar-fill" style="width: <%= stat[:percentage] %>%"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Section 4 : Top 5 produits %>
+  <% if @top_products.any? %>
+    <div class="dashboard-section">
+      <h2 class="section-title">Top 5 produits</h2>
+      <div class="top-products">
+        <% @top_products.each_with_index do |clothe, index| %>
+          <div class="top-product-row">
+            <span class="top-product-rank">#<%= index + 1 %></span>
+            <% if clothe.image.attached? %>
+              <%= image_tag url_for(clothe.image), class: "top-product-img" %>
+            <% else %>
+              <div class="top-product-img top-product-img--placeholder"></div>
+            <% end %>
+            <div class="top-product-info">
+              <p class="top-product-name"><%= clothe.name %></p>
+              <span class="category-badge"><%= clothe.category %></span>
+            </div>
+            <div class="top-product-stats">
+              <p class="top-product-sold"><%= clothe.sales_count %> vendu(s)</p>
+              <p class="top-product-revenue"><%= number_to_currency(clothe.sales_count * clothe.price / 100.0, unit: "€", format: "%n%u", precision: 0) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Section 5 : Ventes par taille %>
+  <% if @size_stats.any? %>
+    <div class="dashboard-section">
+      <h2 class="section-title">Ventes par taille</h2>
+      <div class="size-grid">
+        <% @size_stats.each do |stat| %>
+          <div class="size-card">
+            <span class="size-badge size-badge--large"><%= stat[:name] %></span>
+            <p class="size-units"><%= stat[:units] %> vendu(s)</p>
+            <p class="size-revenue"><%= number_to_currency(stat[:revenue] / 100.0, unit: "€", format: "%n%u", precision: 0) %></p>
+            <div class="size-bar-track">
+              <div class="size-bar-fill" style="width: <%= stat[:percentage] %>%"></div>
+            </div>
+            <p class="size-percentage"><%= stat[:percentage] %>%</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# Section 6 : Grille produits %>
+  <div class="dashboard-section">
+    <h2 class="section-title">Tous les produits</h2>
+    <div class="dashboard-products-grid">
+      <% @clothes.each do |clothe| %>
+        <div class="dashboard-product-card">
+          <% if clothe.image.attached? %>
+            <%= image_tag url_for(clothe.image), class: "dashboard-product-img" %>
+          <% else %>
+            <div class="dashboard-product-img dashboard-product-img--placeholder"></div>
+          <% end %>
+          <div class="dashboard-product-info">
+            <p class="dashboard-product-name"><%= clothe.name %></p>
+            <div class="card-meta">
+              <span class="category-badge"><%= clothe.category %></span>
+              <span class="size-badge"><%= clothe.size %></span>
+            </div>
+            <div class="dashboard-product-numbers">
+              <span class="dashboard-product-price"><%= number_to_currency(clothe.price / 100.0, unit: "€", format: "%n%u", precision: 0) %></span>
+              <span class="dashboard-product-sales"><%= clothe.sales_count %> vendu(s)</span>
+            </div>
+            <p class="dashboard-product-revenue">CA : <%= number_to_currency(clothe.sales_count * clothe.price / 100.0, unit: "€", format: "%n%u", precision: 0) %></p>
+          </div>
+          <div class="dashboard-product-actions">
+            <%= link_to "Modifier", edit_clothe_path(clothe), class: "dash-btn dash-btn--edit" %>
+            <%= link_to "Supprimer", clothe_path(clothe), method: :delete, data: { confirm: "Supprimer #{clothe.name} ?" }, class: "dash-btn dash-btn--delete" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>

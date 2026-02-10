@@ -46,7 +46,32 @@ class ClothesController < ApplicationController
   end
 
   def my_dashboard
-    @clothe = Clothe.all
+    @clothes = Clothe.all
+
+    # KPIs globaux
+    @total_revenue = @clothes.sum { |c| c.sales_count * c.price }
+    @total_sold = @clothes.sum(&:sales_count)
+    @product_count = @clothes.size
+    @average_cart = @total_sold.positive? ? @total_revenue / @total_sold : 0
+
+    # Stats par catégorie (triées par revenue desc)
+    @category_stats = @clothes.group_by(&:category).map do |category, items|
+      revenue = items.sum { |c| c.sales_count * c.price }
+      units = items.sum(&:sales_count)
+      percentage = @total_revenue.positive? ? (revenue * 100.0 / @total_revenue).round(1) : 0
+      { name: category, revenue: revenue, units: units, percentage: percentage }
+    end.sort_by { |s| -s[:revenue] }
+
+    # Top 5 produits (par revenue desc)
+    @top_products = @clothes.sort_by { |c| -(c.sales_count * c.price) }.first(5)
+
+    # Stats par taille (triées par unités desc)
+    @size_stats = @clothes.group_by(&:size).map do |size, items|
+      revenue = items.sum { |c| c.sales_count * c.price }
+      units = items.sum(&:sales_count)
+      percentage = @total_sold.positive? ? (units * 100.0 / @total_sold).round(1) : 0
+      { name: size, revenue: revenue, units: units, percentage: percentage }
+    end.sort_by { |s| -s[:units] }
   end
 
   def my_cart
